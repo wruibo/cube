@@ -56,6 +56,9 @@ namespace cube{
 			virtual void loop();
 
 		private:
+			/*clear the timer items*/
+			void clear();
+
 			/*condition wait for expire operation*/
 			int wait();
 

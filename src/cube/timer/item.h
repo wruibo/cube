@@ -49,6 +49,31 @@ namespace cube{
 			//timer interval, set to 0 if one time task
 			uint64_t _interval;
 		};
+
+		/*data struct for cron task*/
+		class cron_t{
+		public:
+			cron_t(int id, task *t, int min, int hour, int mday, int mon, int wday):
+			  _id(id),_task(t),_min(min),_hour(hour),_mday(mday),_mon(mon),_wday(wday)
+			{		
+			}
+
+			~cron_t()
+			{
+			}
+
+			inline int id(){return _id;}
+
+		private:
+			int _id; //id of the cron task
+			task *_task; //cron task
+
+			int _min; //minute of hour
+			int _hour; //hour of day
+			int _mday; //day of month
+			int _mon; //month of year
+			int _wday; //day of week
+		};
 	}
 }
 #endif

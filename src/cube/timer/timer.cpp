@@ -8,13 +8,6 @@ namespace cube{
 
 		timer::~timer()
 		{
-			/*free the timer items*/
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
-			while(iter != iterend)
-			{
-				delete *iter;
-				iter++;
-			}
 		}
 		
 		int timer::init()
@@ -58,7 +51,6 @@ namespace cube{
 		int timer::cancel(int timerid)
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
-
 			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
@@ -107,9 +99,23 @@ namespace cube{
 			/*wait until the timer thread to exit*/
 			_thread.join();
 
+			/*free the timer items*/
+			this->clear();
+
 			return 0;
 		}
 
+		void timer::clear()
+		{
+			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
+			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
+			while(iter != iterend)
+			{
+				delete *iter;
+				iter++;
+			}
+			_items.clear();
+		}
 		
 		int timer::wait()
 		{
