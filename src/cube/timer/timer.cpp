@@ -28,18 +28,11 @@ namespace cube{
 			/*generate unique timer id*/
 			_global_timer_id++;
 
-			/*compute the first expire time stamp & generate the timer item*/
-			item *newitem = new item(_global_timer_id, t, delay, interval);
-
-			/*add the new timer item into the right position in the timer list*/
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
-			while(iter != iterend)
-			{
-				if((*iter)->expire() > newitem->expire())
-					break;
-				iter++;
-			}
-			_items.insert(iter, newitem);
+			/*add new task item*/
+			_items.push_back(item(_global_timer_id, t, delay, interval));
+			
+			/*resort the items by expire time ascend*/
+			_items.sort();
 
 			/*wake up the timer thread*/
 			_condition.wake();
@@ -51,17 +44,16 @@ namespace cube{
 		int timer::cancel(int timerid)
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
+			std::list<item>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
-				if((*iter)->id() == timerid)
+				if((*iter).id() == timerid)
 				{
-					delete *iter;
 					_items.erase(iter);
 					break;
 				}
-
-				iter++;
+				else
+					iter++;
 			}
 
 			return 0;
@@ -72,16 +64,16 @@ namespace cube{
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
 
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
+			std::list<item>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
-				if((*iter)->id() == timerid)
+				if((*iter).id() == timerid)
 				{
-					(*iter)->interval(interval);
+					(*iter).interval(interval);
 					break;
 				}
-
-				iter++;
+				else
+					iter++;
 			}
 
 			return 0;
@@ -108,12 +100,6 @@ namespace cube{
 		void timer::clear()
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
-			while(iter != iterend)
-			{
-				delete *iter;
-				iter++;
-			}
 			_items.clear();
 		}
 		
@@ -121,85 +107,58 @@ namespace cube{
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
 			if(_items.empty())
-				_condition.wait(_mutex);
+				_condition.wait(&_mutex);
 			else
 			{
-				uint64_t now = mtime();
-				uint64_t latest_expire_tm = _items.front()->expire();
-				if(latest_expire_tm > now)
-					_condition.wait(_mutex, (int)(latest_expire_tm-now));
+				if(!_items.empty())
+				{
+					cube::time::msec_t now = cube::time::now();
+					cube::time::msec_t latest_expire_tm = _items.front().expire();
+					if(latest_expire_tm > now)
+						_condition.wait(&_mutex, (int)(latest_expire_tm-now));
+				}
 			}
 
 			return 0;
 		}
-
 		
 		int timer::expire()
 		{
 			cube::thread::scope_lock<cube::thread::cond_mutex_t> lock(_mutex);
-
 			/*current unix time in million seconds since 1970.01.01*/
-			uint64_t now = mtime();
-
-			/*timer task expires*/
-			std::list<item*> expires;
+			cube::time::msec_t now = cube::time::now();
 
 			/*scan the timer list from header*/
-			std::list<item*>::iterator iter=_items.begin(), iterend=_items.end();
+			std::list<item>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
-				if((*iter)->expire() > now)
+				if((*iter).expire() > now)
 				{/*current timer task is not expired*/
 					break;
 				}
 				else
 				{/*current timer task has expired*/
-					/*remove the expired timer task*/
-					item* item = *iter;
-					_items.erase(iter++);
-
 					/*execute the timer task*/
-					item->get_task()->run(now/1000);
+					(*iter).run();
 					
 					/*reset the item's next expire time*/
-					if(item->is_repeat())
-						item->expire(now+item->interval());
-
-					 /*move the timer item to expires list*/
-					expires.push_back(item);
-				}
-			}
-
-			/*save the expired timer item number*/
-			int nexpired = (int)expires.size();
-
-			/*reschedule the expired repeat tasks*/
-			std::list<item*>::iterator iter_expired=expires.begin(), iterend_expired=expires.end();
-			while(iter_expired != iterend_expired)
-			{
-				if((*iter_expired)->is_repeat())
-				{
-					/*reschedule the repeat timer item*/
-					iter=_items.begin(), iterend=_items.end();
-					while(iter != iterend)
+					if((*iter).is_repeat())
 					{
-						if((*iter)->expire() > (*iter_expired)->expire())
-							break;
+						(*iter).expire(now);
 						iter++;
 					}
-					_items.insert(iter, *iter_expired);
+					else
+					{
+						/*not repeat task, remove from timer items*/
+						_items.erase(iter++);
+					}
 				}
-				else
-				{
-					/*release the not repeat timer item*/
-					delete (*iter_expired);
-				}
-
-				iter_expired++;
 			}
-			expires.clear();
 
-			return nexpired;
+			/*resort the timer tasks by expire time ascend*/
+			_items.sort();
+
+			return 0;
 		}
 		
 		void timer::loop()

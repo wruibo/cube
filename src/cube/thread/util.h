@@ -8,9 +8,9 @@ namespace cube{
 		extern void sleep(unsigned long milliseconds);
 
 		/**
-		*	get the current thread id
+		*	sleep for ever, hang up current thread
 		*/
-		extern unsigned long get_current_thread_id();
+		extern void sleep_for_ever();
 	}
 }
 #endif

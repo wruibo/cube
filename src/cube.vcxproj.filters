@@ -61,6 +61,18 @@
     <Filter Include="Source Files\thread\win">
       <UniqueIdentifier>{e5d20997-61a8-494a-b2dd-b0a1b321ae35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\time">
+      <UniqueIdentifier>{7ec7de5c-2a2d-43c3-b29d-8ef6be8290b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\time">
+      <UniqueIdentifier>{848afa0c-3841-49a6-b02e-0481388fbc65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\time\win">
+      <UniqueIdentifier>{7c4c4543-da39-43cd-8ffb-a65c6ff08a10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\time\linux">
+      <UniqueIdentifier>{d8381ecd-a1a3-4870-8df4-e1866d4b239c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -85,9 +97,6 @@
       <Filter>Header Files\timer</Filter>
     </ClInclude>
     <ClInclude Include="cube\timer\timer.h">
-      <Filter>Header Files\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="cube\timer\util.h">
       <Filter>Header Files\timer</Filter>
     </ClInclude>
     <ClInclude Include="cube\type\type.h">
@@ -159,6 +168,18 @@
     <ClInclude Include="cube\thread\linux\condition.h">
       <Filter>Header Files\thread\linux</Filter>
     </ClInclude>
+    <ClInclude Include="cube\timer\crontab.h">
+      <Filter>Header Files\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\time\time.h">
+      <Filter>Header Files\time</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\time\type.h">
+      <Filter>Header Files\time</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\time\systm.h">
+      <Filter>Header Files\time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cube\string\win\codecvt.cpp">
@@ -214,6 +235,18 @@
     </ClCompile>
     <ClCompile Include="cube\timer\timer.cpp">
       <Filter>Source Files\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\timer\crontab.cpp">
+      <Filter>Source Files\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\time\time.cpp">
+      <Filter>Source Files\time</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\time\linux\systm.cpp">
+      <Filter>Source Files\time\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\time\win\systm.cpp">
+      <Filter>Source Files\time\win</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

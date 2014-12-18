@@ -6,6 +6,11 @@ namespace cube{
 		{
 			usleep(milliseconds*1000);
 		}
+
+		void sleep_for_ever()
+		{
+			::sleep((unsigned int)-1);
+		}
 	}
 }
 

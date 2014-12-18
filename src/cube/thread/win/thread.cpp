@@ -47,12 +47,16 @@ namespace cube{
 		{
 			if(_stop)
 				return 0;
-
 			_stop = true;
+			return -1;
+		}
+
+		int thread::join()
+		{
 			DWORD res = WaitForSingleObject(_hthread, INFINITE);
 			if(res == WAIT_OBJECT_0)
 				return 0;
-			return -1;
+			return 0;
 		}
 
 		unsigned int thread::thread_id()

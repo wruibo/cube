@@ -29,7 +29,7 @@ namespace cube{
 			_global_cron_id++;
 
 			/*generate the cron item*/
-			_items.push_back(new cron_t(_global_cron_id,t,min,hour,mday,mon,wday));
+			_items.push_back(cron_t(_global_cron_id,t,min,hour,mday,mon,wday));
 
 			return _global_cron_id;
 		}
@@ -37,12 +37,11 @@ namespace cube{
 		int crontab::remove(int tid)
 		{
 			cube::thread::scope_lock<cube::thread::mutex> lock(_mutex);
-			std::list<cron_t*>::iterator iter=_items.begin(), iterend=_items.end();
+			std::list<cron_t>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
-				if((*iter)->id() == tid)
+				if((*iter).id() == tid)
 				{
-					delete *iter;
 					_items.erase(iter++);
 					break;
 				}
@@ -67,12 +66,6 @@ namespace cube{
 		int crontab::clear()
 		{
 			cube::thread::scope_lock<cube::thread::mutex> lock(_mutex);
-			std::list<cron_t*>::iterator iter=_items.begin(), iterend=_items.end();
-			while(iter != iterend)
-			{
-				delete *iter;
-				iter++;
-			}
 			_items.clear();
 
 			return 0;
@@ -81,7 +74,7 @@ namespace cube{
 		int crontab::wait()
 		{
 			/*get the current time*/
-			time_t now = time(0);
+			time_t now = ::time(0);
 			struct tm *t = localtime(&now);
 
 			/*wait for the first second of a minute*/
@@ -90,16 +83,18 @@ namespace cube{
 		}
 
 		int crontab::check()
-		{
-			/*get the current time*/
-			time_t now = time(0);
-			struct tm *t = localtime(&now);
-			
+		{	
 			cube::thread::scope_lock<cube::thread::mutex> lock(_mutex);
-			std::list<cron_t*>::iterator iter=_items.begin(), iterend=_items.end();
+			/*get the current time*/
+			time_t now = ::time(0);
+			struct tm *t = ::localtime(&now);
+
+			/*scan all the cron items for the triggered*/
+			std::list<cron_t>::iterator iter=_items.begin(), iterend=_items.end();
 			while(iter != iterend)
 			{
-			
+				if((*iter).timeup(t->tm_min, t->tm_hour, t->tm_mday, t->tm_mon+1, t->tm_wday+1))
+					(*iter).run();
 				iter++;
 			}
 
@@ -108,8 +103,9 @@ namespace cube{
 
 		void crontab::loop()
 		{
+			//wait for a complete minute
 			this->wait();
-			
+			//check all the cron items, run the triggered item task
 			this->check();
 		}
 	}

@@ -15,7 +15,7 @@ namespace cube{
 				*@param now: unix time stamp, million seconds since 1970.01.01
 				*
 				*/
-				virtual int run(const time_t now) = 0;
+				virtual int run() = 0;
 		};
 	}
 }

@@ -67,7 +67,7 @@ namespace cube{
 
 		private:
 			//cron task items
-			std::list<cron_t*> _items;
+			std::list<cron_t> _items;
 			//mutex for the cron task items
 			cube::thread::mutex  _mutex;
 

@@ -33,6 +33,11 @@ namespace cube{
 				return 0;
 
 			_stop = true;
+			return 0;
+		}
+
+		int thread::join()
+		{
 			int res = pthread_join(_hthread, 0);
 			if(res != 0)
 				return -1;

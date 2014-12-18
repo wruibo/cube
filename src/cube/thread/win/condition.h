@@ -22,7 +22,7 @@ namespace cube{
 			*return:
 			*	0--on success, otherwise failed
 			*/
-			int wait(cond_mutex_t mutex, int msec = -1);
+			int wait(cond_mutex_t *mutex, int msec = -1);
 
 			/**
 			*	wake up at least 1 thread wait for the condition

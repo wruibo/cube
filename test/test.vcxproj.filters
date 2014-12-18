@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\test_hex.h">
+    <ClInclude Include="test_timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="test_timer.h">
+    <ClInclude Include="test_crontab.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="test_hex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -30,6 +33,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_crontab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

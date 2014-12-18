@@ -67,7 +67,7 @@ namespace cube{
 
 		private:
 			//timer task items
-			std::list<item*> _items;
+			std::list<item> _items;
 
 			//lock for using the timer
 			cube::thread::cond_mutex_t  _mutex;

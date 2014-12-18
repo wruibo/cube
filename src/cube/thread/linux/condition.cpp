@@ -25,7 +25,7 @@ namespace cube{
 
 		}
 
-		int condition::wait(cond_mutex_t mutex, int msec /* = -1 */)
+		int condition::wait(cond_mutex_t *mutex, int msec /* = -1 */)
 		{
 			int ret = 0;
 			if(msec < 0)
@@ -35,7 +35,7 @@ namespace cube{
 				struct timespec ts;
 				ts.tv_sec = (time_t)(msec/1000);
 				ts.tv_nsec = (long)(msec%1000)*1000000;
-				ret = pthread_cond_timewait(&_cond, &mutex, &ts);
+				ret = pthread_cond_timedwait(&_cond, mutex, &ts);
 			}
 			return ret;
 		}

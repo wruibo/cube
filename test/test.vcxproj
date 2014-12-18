@@ -80,11 +80,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\test_hex.h" />
+    <ClInclude Include="test_crontab.h" />
+    <ClInclude Include="test_hex.h" />
     <ClInclude Include="test_timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="test_crontab.cpp" />
     <ClCompile Include="test_hex.cpp" />
     <ClCompile Include="test_timer.cpp" />
   </ItemGroup>

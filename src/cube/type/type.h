@@ -3,8 +3,10 @@
 
 #ifdef _WIN32
 #include "cube/type/win/type.h"
-#else
+#elif defined(linux) || defined(__linux__) || defined(__linux)
 #include "cube/type/linux/type.h"
+#else
+#error "platform is not supported."
 #endif
 
 namespace cube{

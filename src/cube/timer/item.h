@@ -1,8 +1,8 @@
 #ifndef _CUBE_TIMER_ITEM_H
 #define _CUBE_TIMER_ITEM_H
 #include "cube/type/type.h"
+#include "cube/time/time.h"
 #include "cube/timer/task.h"
-#include "cube/timer/util.h"
 
 namespace cube{
 	namespace timer{
@@ -13,12 +13,12 @@ namespace cube{
 		public:
 			item(int id, task *t, const int delay, const int interval):_id(id), _task(t)
 			{
-				_expire = mtime() + delay;
+				_expire = cube::time::now() + delay;
 
 				if(interval < 0)
 				{
 					_repeat = false;
-					_interval = (uint64_t)-1;
+					_interval = (cube::time::msec_t)-1;
 				}
 				else
 				{
@@ -27,14 +27,26 @@ namespace cube{
 				}
 			}
 
-			~item(){}
+			~item()
+			{
+				_task = 0;
+			}
+
+			bool operator<(const item &cmpto)
+			{
+				return this->_expire < cmpto._expire;
+			}
+
+			void run()
+			{	
+				if(_task != 0)
+					_task->run();
+			}
 
 			inline int id(){return _id;}
 			inline bool is_repeat(){return _repeat;}
-			inline task* get_task(){return _task;}
-			inline uint64_t expire(){return _expire;}
-			inline void expire(uint64_t expire){_expire = expire;}
-			inline uint64_t interval(){return _interval;}
+			inline cube::time::msec_t expire(){return _expire;}
+			inline void expire(cube::time::msec_t now){_expire = now+_interval;}
 			inline void interval(int interval){_interval = interval;}
 
 		private:
@@ -45,12 +57,12 @@ namespace cube{
 			//task to execute when timer expired
 			task *_task;
 			//next expire time point
-			uint64_t _expire;
+			cube::time::msec_t _expire;
 			//timer interval, set to 0 if one time task
-			uint64_t _interval;
+			cube::time::msec_t _interval;
 		};
 
-		/*data struct for cron task*/
+		/*data structure for cron task*/
 		class cron_t{
 		public:
 			cron_t(int id, task *t, int min, int hour, int mday, int mon, int wday):
@@ -60,10 +72,27 @@ namespace cube{
 
 			~cron_t()
 			{
+				_task = 0;
 			}
 
-			inline int id(){return _id;}
+			inline int id()
+			{
+				return _id;
+			}
 
+			bool timeup(int curr_min, int curr_hour, int curr_mday, int curr_mon, int curr_wday)
+			{
+				static const int ANY_TIME = -1;
+				return ((_mon==ANY_TIME)||(_mon==curr_mon)) && ((_wday==ANY_TIME)||(_wday==curr_wday)) &&
+						((_mday==ANY_TIME)||(_mday==curr_mday)) && ((_hour==ANY_TIME)||(_hour==curr_hour)) &&
+						((_min==ANY_TIME)||(_min==curr_min));
+			}
+
+			void run()
+			{
+				if(_task != 0)
+					_task->run();
+			}
 		private:
 			int _id; //id of the cron task
 			task *_task; //cron task
