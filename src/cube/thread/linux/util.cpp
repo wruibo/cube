@@ -9,7 +9,7 @@ namespace cube{
 
 		void sleep_for_ever()
 		{
-			::sleep((unsigned int)-1);
+			sleep((unsigned int)-1);
 		}
 	}
 }

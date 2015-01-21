@@ -25,7 +25,7 @@ namespace cube{
 
 		}
 
-		int condition::wait(cond_mutex_t *mutex, int msec /* = -1 */)
+		int condition::wait(cond_mutex_t *mutex, unsigned int msec/* = 0xFFFFFFFF*/)
 		{
 			int ret = 0;
 			if(msec < 0)

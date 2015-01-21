@@ -7,10 +7,10 @@ namespace cube{
 		/**
 		*	thread class for create/destroy a thread object
 		*/
-		class thread : public runnable{
+		class cube_thread {
 		public:
-			thread();
-			~thread();
+			cube_thread();
+			~cube_thread();
 			/**
 			*	start thread with a runnable object
 			*/
@@ -40,7 +40,7 @@ namespace cube{
 			runnable *_runnable_obj;
 
 			//handle to thread
-			thread_t _hthread;
+			pthread_t _hthread;
 
 			//stop flag for run loop
 			bool _stop;

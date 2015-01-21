@@ -6,24 +6,24 @@ namespace cube{
 	namespace thread{
 		class thread_exception : public std::exception{
 		public:
-			thread_exception::thread_exception() throw(): _msg("") 	{ }
+			thread_exception() throw(): _msg("") 	{ }
 
-			thread_exception::thread_exception(const char *msg) throw()
+			thread_exception(const char *msg) throw()
 			{
 				_msg.assign(msg);
 			}
 
-			thread_exception::thread_exception(const std::string &msg) throw()
+			thread_exception(const std::string &msg) throw()
 			{
 				_msg = msg;
 			}
 
-			thread_exception::~thread_exception() throw()
+			~thread_exception() throw()
 			{
 
 			}
 
-			const char *thread_exception::what() const throw()
+			const char * what() const throw()
 			{
 				return _msg.c_str();
 			}

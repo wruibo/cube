@@ -12,7 +12,7 @@ namespace cube{
 
 		}
 
-		int condition::wait(cond_mutex_t *mutex, int msec /* = -1 */)
+		int condition::wait(cond_mutex_t *mutex, unsigned int msec/* = 0xFFFFFFFF*/)
 		{
 			if(msec < 0)
 				::SleepConditionVariableCS(&_cond, &mutex->_cs, INFINITE);

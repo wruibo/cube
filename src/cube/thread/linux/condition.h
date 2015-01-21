@@ -1,5 +1,6 @@
 #ifndef _CUBE_THREAD_LINUX_CONDITION_H
 #define _CUBE_THREAD_LINUX_CONDITION_H
+#include <pthread.h>
 #include "cube/thread/linux/mutex.h"
 namespace cube{
 	namespace thread{
@@ -22,7 +23,7 @@ namespace cube{
 			*return:
 			*	0--on success, otherwise failed
 			*/
-			int wait(cond_mutex_t *mutex, int msec = -1);
+			int wait(cond_mutex_t *mutex, unsigned int msec = 0xFFFFFFFF);
 
 			/**
 			*	wake up at least 1 thread wait for the condition
