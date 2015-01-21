@@ -24,6 +24,9 @@
     <ClInclude Include="test_hex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="test_blocking_queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test_hex.cpp">
@@ -36,6 +39,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="test_crontab.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_blocking_queue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

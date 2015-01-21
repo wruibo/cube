@@ -80,12 +80,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="test_blocking_queue.h" />
     <ClInclude Include="test_crontab.h" />
     <ClInclude Include="test_hex.h" />
     <ClInclude Include="test_timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="test_blocking_queue.cpp" />
     <ClCompile Include="test_crontab.cpp" />
     <ClCompile Include="test_hex.cpp" />
     <ClCompile Include="test_timer.cpp" />

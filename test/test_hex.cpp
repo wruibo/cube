@@ -1,5 +1,6 @@
 #include "test_hex.h"
 #include <iostream>
+#include <string.h>
 
 void test_hex()
 {
