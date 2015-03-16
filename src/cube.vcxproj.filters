@@ -197,9 +197,6 @@
     <ClCompile Include="cube\thread\win\util.cpp">
       <Filter>Source Files\thread\win</Filter>
     </ClCompile>
-    <ClCompile Include="cube\thread\linux\util.cpp">
-      <Filter>Source Files\thread\linux</Filter>
-    </ClCompile>
     <ClCompile Include="cube\thread\win\critical_section.cpp">
       <Filter>Source Files\thread\win</Filter>
     </ClCompile>
@@ -212,26 +209,11 @@
     <ClCompile Include="cube\thread\win\thread.cpp">
       <Filter>Source Files\thread\win</Filter>
     </ClCompile>
-    <ClCompile Include="cube\thread\linux\mutex.cpp">
-      <Filter>Source Files\thread\linux</Filter>
-    </ClCompile>
-    <ClCompile Include="cube\thread\linux\rwlock.cpp">
-      <Filter>Source Files\thread\linux</Filter>
-    </ClCompile>
-    <ClCompile Include="cube\thread\linux\thread.cpp">
-      <Filter>Source Files\thread\linux</Filter>
-    </ClCompile>
-    <ClCompile Include="cube\thread\linux\semaphore.cpp">
-      <Filter>Source Files\thread\linux</Filter>
-    </ClCompile>
     <ClCompile Include="cube\thread\win\rwlock.cpp">
       <Filter>Source Files\thread\win</Filter>
     </ClCompile>
     <ClCompile Include="cube\thread\win\condition.cpp">
       <Filter>Source Files\thread\win</Filter>
-    </ClCompile>
-    <ClCompile Include="cube\thread\linux\condition.cpp">
-      <Filter>Source Files\thread\linux</Filter>
     </ClCompile>
     <ClCompile Include="cube\timer\timer.cpp">
       <Filter>Source Files\timer</Filter>
@@ -247,6 +229,24 @@
     </ClCompile>
     <ClCompile Include="cube\time\win\systm.cpp">
       <Filter>Source Files\time\win</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\condition.cpp">
+      <Filter>Source Files\thread\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\mutex.cpp">
+      <Filter>Source Files\thread\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\rwlock.cpp">
+      <Filter>Source Files\thread\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\semaphore.cpp">
+      <Filter>Source Files\thread\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\thread.cpp">
+      <Filter>Source Files\thread\linux</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\thread\linux\util.cpp">
+      <Filter>Source Files\thread\linux</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
