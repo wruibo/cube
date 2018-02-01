@@ -1,7 +1,0 @@
-#ifndef _CUBE_TYPE_WIN_TYPE_H
-#define _CUBE_TYPE_WIN_TYPE_H
-namespace cube{
- 	typedef unsigned __int64 uint64_t;
-	typedef __int64 int64_t;
-}
-#endif
