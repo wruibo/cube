@@ -30,14 +30,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -84,11 +84,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -110,13 +110,13 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,6 +143,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addr.cpp" />
+    <ClCompile Include="charset.cpp" />
+    <ClCompile Include="cookie.cpp" />
+    <ClCompile Include="entity.cpp" />
+    <ClCompile Include="head.cpp" />
+    <ClCompile Include="header.cpp" />
+    <ClCompile Include="http.cpp" />
+    <ClCompile Include="meta.cpp" />
+    <ClCompile Include="mime.cpp" />
+    <ClCompile Include="param.cpp" />
+    <ClCompile Include="query.cpp" />
+    <ClCompile Include="request.cpp" />
+    <ClCompile Include="response.cpp" />
+    <ClCompile Include="feed.cpp" />
+    <ClCompile Include="rpstream.cpp" />
+    <ClCompile Include="rqstream.cpp" />
+    <ClCompile Include="session.cpp" />
+    <ClCompile Include="status.cpp" />
+    <ClCompile Include="uri.cpp" />
+    <ClCompile Include="version.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="addr.h" />
+    <ClInclude Include="charset.h" />
+    <ClInclude Include="cookie.h" />
+    <ClInclude Include="def.h" />
+    <ClInclude Include="entity.h" />
+    <ClInclude Include="head.h" />
+    <ClInclude Include="header.h" />
+    <ClInclude Include="http.h" />
+    <ClInclude Include="meta.h" />
+    <ClInclude Include="mime.h" />
+    <ClInclude Include="param.h" />
+    <ClInclude Include="query.h" />
+    <ClInclude Include="request.h" />
+    <ClInclude Include="response.h" />
+    <ClInclude Include="feed.h" />
+    <ClInclude Include="rpstream.h" />
+    <ClInclude Include="rqstream.h" />
+    <ClInclude Include="session.h" />
+    <ClInclude Include="status.h" />
+    <ClInclude Include="uri.h" />
+    <ClInclude Include="version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,9 @@
 #pragma once
 #include "cube\fd\def.h"
-#include "cube\util\exp.h"
+#include "cube\fd\exp.h"
 BEGIN_CUBE_DIR_NS
 //exceptions
-typedef util::cexception error;
+typedef fd::cexception error;
 /*
 *	make directory by specified directory path
 *@param path: directory path

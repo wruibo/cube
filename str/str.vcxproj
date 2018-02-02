@@ -22,6 +22,7 @@
     <ClInclude Include="case.h" />
     <ClInclude Include="cast.h" />
     <ClInclude Include="find.h" />
+    <ClInclude Include="format.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="hex.h" />
     <ClInclude Include="rand.h" />
@@ -37,6 +38,7 @@
     <ClCompile Include="case.cpp" />
     <ClCompile Include="cast.cpp" />
     <ClCompile Include="find.cpp" />
+    <ClCompile Include="format.cpp" />
     <ClCompile Include="print.cpp" />
     <ClCompile Include="hex.cpp" />
     <ClCompile Include="rand.cpp" />

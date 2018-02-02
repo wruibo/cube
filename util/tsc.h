@@ -2,11 +2,11 @@
 *	tsc - thread safe containers
 */
 #pragma once
-#include "cube.h"
+#include "cube\util\def.h"
 #include <list>
 #include <mutex>
 
-BEGIN_CUBE_NAMESPACE
+BEGIN_CUBE_UTIL_NS
 template<class T>
 class list {
 public:
@@ -39,4 +39,4 @@ private:
 	//stl list
 	std::list<T> _list;
 };
-END_CUBE_NAMESPACE
+END_CUBE_UTIL_NS

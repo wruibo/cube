@@ -2,9 +2,9 @@
 *	mm - memory operation module
 */
 #pragma once
-#include "cube.h"
+#include "cube\util\def.h"
 
-BEGIN_CUBE_NAMESPACE
+BEGIN_CUBE_UTIL_NS
 class mm {
 public:
 	/*
@@ -69,4 +69,4 @@ public:
 	*/
 	static int overwrite(char* data, int datalen, const char* src, int srclen, const char* dest, int destlen, char default = 0, bool onlyfirst = true);
 };
-END_CUBE_NAMESPACE
+END_CUBE_UTIL_NS

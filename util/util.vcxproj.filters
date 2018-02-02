@@ -15,43 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cc.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="clt.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="io.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="ios.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="mm.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="net.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="os.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="sa.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="str.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="tm.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="tsc.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="url.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="util.cpp">
@@ -62,46 +32,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="clt.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="io.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ios.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="log.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="mm.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="net.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="os.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="sa.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="str.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tm.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tsc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="url.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="std.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="def.h">

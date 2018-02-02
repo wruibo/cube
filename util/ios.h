@@ -2,10 +2,11 @@
 *	ios - input output stream module
 */
 #pragma once
-#include "cube.h"
+#include "cube\util\def.h"
+#include "cube\util\exp.h"
 #include <string>
 #include <fstream>
-BEGIN_IOS_NAMESPACE
+BEGIN_CUBE_UTIL_NS
 //stream class
 class stream {
 	typedef cexception error;
@@ -250,4 +251,4 @@ private:
 	//file content
 	std::string _content;
 };
-END_IOS_NAMESPACE
+END_CUBE_UTIL_NS

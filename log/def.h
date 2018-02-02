@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 #define BEGIN_CUBE_LOG_NS namespace cube { namespace log{
 #define END_CUBE_LOG_NS }}
 

@@ -1,6 +1,6 @@
 #include "cube\fd\fd.h"
 #include "cube\fd\path.h"
-#include "cube\str\part.h"
+#include "cube\fd\part.h"
 #include <io.h>
 BEGIN_CUBE_FD_NS
 ////////////////////////////////////////////////file/directory class//////////////////////////////////////////////////
@@ -98,7 +98,7 @@ std::string ext(const std::string &name) {
 }
 
 std::string name(const std::string &path) {
-	std::vector<std::string> subpaths = str::part(path.c_str(), "\\/");
+	std::vector<std::string> subpaths = fd::part(path.c_str(), "\\/");
 	if (subpaths.size() > 0) {
 		return subpaths[subpaths.size() - 1];
 	}
@@ -107,7 +107,7 @@ std::string name(const std::string &path) {
 }
 
 std::string path(const std::string &path) {
-	std::vector<std::string> subpaths = str::part(path.c_str(), "\\/");
+	std::vector<std::string> subpaths = fd::part(path.c_str(), "\\/");
 	if (subpaths.size() > 0) {
 		std::string filename = subpaths[subpaths.size() - 1];
 		return path.substr(0, path.length() - filename.length());

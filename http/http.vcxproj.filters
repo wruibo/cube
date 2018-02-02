@@ -14,4 +14,131 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="http.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="addr.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="param.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="uri.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cookie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="session.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="status.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="query.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="header.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="request.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="response.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rqstream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="rpstream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="head.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="charset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="meta.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="feed.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="version.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="http.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="addr.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="param.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="uri.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cookie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="session.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="status.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="query.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="header.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="request.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="response.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rqstream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="rpstream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="head.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="charset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="meta.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="feed.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

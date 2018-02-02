@@ -30,6 +30,15 @@
     <ClInclude Include="path.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="strip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="part.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dir.cpp">
@@ -42,6 +51,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="strip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="part.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

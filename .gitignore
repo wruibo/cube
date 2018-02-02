@@ -3,6 +3,9 @@
 *.lo
 *.o
 *.obj
+*.tlog
+.vs
+*Debug/*
 
 # Compiled Dynamic libraries
 *.so

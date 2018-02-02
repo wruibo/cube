@@ -1,5 +1,5 @@
 #include "cube\log\logger.h"
-#include "cube\util\tm.h"
+#include "cube\log\util.h"
 #include <stdarg.h>
 BEGIN_CUBE_LOG_NS
 //////////////////////////////logger class//////////////////////////////
@@ -110,7 +110,7 @@ void logger::print(level lvl, const char *msg) {
 	//add level and time to message
 	const int BUFSZ = 1024;
 	char buf[BUFSZ] = { 0 };
-	int pos = snprintf(buf, BUFSZ, "%s[%s]%s\n", util::tm::now("[%Y%m%d][%H:%M:%S]").c_str(), LEVEL[(int)lvl], msg);
+	int pos = snprintf(buf, BUFSZ, "%s[%s]%s\n", now("[%Y%m%d][%H:%M:%S]").c_str(), LEVEL[(int)lvl], msg);
 	if (pos > 0 && pos<BUFSZ) {
 		buf[pos] = 0;
 		msg = buf;

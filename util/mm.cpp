@@ -1,6 +1,6 @@
 #include "mm.h"
 
-BEGIN_CUBE_NAMESPACE
+BEGIN_CUBE_UTIL_NS
 int mm::max_same_prefix_and_postfix(const char* blk, int len) {
 	int rptlen = 0;
 	for (rptlen = len - 1; rptlen > 0; rptlen--) {
@@ -109,6 +109,4 @@ int mm::overwrite(char* data, int datalen, const char* src, int srclen, const ch
 
 	return ownum;
 }
-
-
-END_CUBE_NAMESPACE
+END_CUBE_UTIL_NS

@@ -19,40 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cc.cpp" />
-    <ClCompile Include="clt.cpp" />
     <ClCompile Include="exp.cpp" />
-    <ClCompile Include="io.cpp" />
     <ClCompile Include="ios.cpp" />
-    <ClCompile Include="log.cpp" />
     <ClCompile Include="mm.cpp" />
-    <ClCompile Include="net.cpp" />
-    <ClCompile Include="os.cpp" />
-    <ClCompile Include="sa.cpp" />
-    <ClCompile Include="str.cpp" />
     <ClCompile Include="tm.cpp" />
-    <ClCompile Include="tsc.cpp" />
-    <ClCompile Include="url.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cc.h" />
-    <ClInclude Include="clt.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="exp.h" />
-    <ClInclude Include="io.h" />
     <ClInclude Include="ios.h" />
-    <ClInclude Include="log.h" />
     <ClInclude Include="mm.h" />
-    <ClInclude Include="net.h" />
-    <ClInclude Include="os.h" />
-    <ClInclude Include="sa.h" />
     <ClInclude Include="safe.h" />
-    <ClInclude Include="std.h" />
-    <ClInclude Include="str.h" />
     <ClInclude Include="tm.h" />
     <ClInclude Include="tsc.h" />
-    <ClInclude Include="url.h" />
     <ClInclude Include="util.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -125,7 +105,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -154,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

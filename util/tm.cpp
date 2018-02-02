@@ -39,10 +39,10 @@ int tm::now(unit u, tz timezone) {
 struct ::tm *tm::now(tz timezone) {
 	time_t t = ::time(0);
 	switch (timezone) {
-	case cube::tm::tz::utc:
+	case tm::tz::utc:
 		return ::gmtime(&t);
 		break;
-	case cube::tm::tz::local:
+	case tm::tz::local:
 		return ::localtime(&t);
 		break;
 	default:

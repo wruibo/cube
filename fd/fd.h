@@ -1,11 +1,11 @@
 #pragma once
 #include "cube\fd\def.h"
-#include "cube\util\exp.h"
+#include "cube\fd\exp.h"
 #include <string>
 #include <vector>
 BEGIN_CUBE_FD_NS
 //exceptions
-typedef util::cexception error;
+typedef cexception error;
 
 /*
 *	test if specified file or directory is exist
