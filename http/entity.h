@@ -1,61 +1,40 @@
 #pragma once
-#include "cube\http\def.h"
+#include "cube\http\stream.h"
 #include <iostream>
 BEGIN_CUBE_HTTP_NS
 //http entity class
 class entity {
 public:
-	/*
-	*	take data from stream
-	*@param data: in/out, data to take to
-	*@param sz: in, data size
-	*@return:
-	*	size taked
-	*/
-	virtual int read(char *data, int sz) = 0;
 
-	/*
-	*	feed data to stream
-	*@param data: in, data to feed
-	*@param sz: in, data size
-	*@return:
-	*	size feeded
-	*/
-	virtual int write(const char *data, int sz) = 0;
 
-	/*
-	*	get feed data size in bytes
-	*@return:
-	*	data size in bytes
-	*/
-	virtual int size() const = 0;
-
-	/*
-	*	check if feed is end of read, which means all data has read
-	*@return:
-	*	true - no more data can be read, false - more data can be read
-	*/
-	virtual bool endr() const = 0;
-
-	/*
-	*	check if feed is end of write, which means no more data can be write
-	*@reutrn:
-	*	true - no more data can be write, false - more data can be write
-	*/
-	virtual bool endw() const = 0;
-
-	/*
-	*	check if feed is done, which means completed
-	*@return:
-	*	true - done, false - not done
-	*/
-	virtual bool done() const = 0;
-
-	/*
-	*	check if feed if empty, which means no data
-	*/
-	virtual bool empty() const = 0;
+private:
+	//entity data stream
+	stream *_stream;
 };
 
+//form entity class
+class entity_form : public entity {
+public:
+	entity_form() {}
+	virtual ~entity_form() {}
 
+
+private:
+};
+
+//data entity class
+class entity_data : public entity {
+public:
+	entity_data() {}
+	virtual ~entity_data() {}
+
+};
+
+//file entity class
+class entity_file : public entity {
+public:
+	entity_file() {}
+	virtual ~entity_file() {}
+
+};
 END_CUBE_HTTP_NS

@@ -19,6 +19,7 @@ public:
 	void range(const std::string &range) { _range = range; }
 	const std::string &expires() const { return _expires; }
 	void expires(const std::string &expires) { _expires = expires; }
+
 private:
 	int _length;
 	std::string _type;

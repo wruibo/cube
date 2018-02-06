@@ -62,11 +62,17 @@ bool rqhead::done() const {
 
 ///////////////////////////////////////////////request body class//////////////////////////////////////
 int rqbody::read(char *data, int sz, std::string *err) {
-	return 0;
+	if (_entity == nullptr)
+		return 0;
+
+	return _entity->read(data, sz);
 }
 
 int rqbody::write(const char *data, int sz, std::string *err) {
-	return 0;
+	if (_entity == nullptr)
+		return 0;
+
+	return _entity->write(data, sz);
 }
 
 bool rqbody::done() const {
@@ -101,6 +107,9 @@ int request::write(const char *data, int sz) {
 	//feed head
 	if (!_head.done()) {
 		fsz += _head.write(data + fsz, sz - fsz);
+		if (_head.done()) {
+			_body.
+		}
 	}
 
 	//feed body

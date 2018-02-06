@@ -1,8 +1,7 @@
 #pragma once
 #include "cube\svr\def.h"
 #include "cube\svr\tcp.h"
-#include "cube\http\rqstream.h"
-#include "cube\http\rpstream.h"
+#include "cube\http\stream.h"
 BEGIN_CUBE_SVR_HTTP_NS
 //http servlet class
 class servlet {

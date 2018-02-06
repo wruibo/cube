@@ -48,16 +48,7 @@
     <ClCompile Include="response.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="rqstream.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="rpstream.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="entity.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="head.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="charset.cpp">
@@ -73,6 +64,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="version.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="body.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="message.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="field.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="parser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="packer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,16 +122,7 @@
     <ClInclude Include="response.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="rqstream.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rpstream.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="entity.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="head.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="charset.h">
@@ -138,6 +138,24 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="version.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="body.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="message.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="field.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="parser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="packer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
