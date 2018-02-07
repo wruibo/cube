@@ -8,6 +8,7 @@ BEGIN_CUBE_HTTP_NS
 class header {
 public:
 	header() : _name(""), _value("") { }
+	header(const std::string &name, const std::string &value) : _name(name), _value(value) {}
 	virtual ~header() {}
 
 
@@ -24,24 +25,22 @@ private:
 
 //http message headers class
 class headers {
+	static const header _empty_header;
 public:
 	headers() {}
 	virtual ~headers() {}
 
+	bool has(const std::string &name) const;
+
 	int count() const;
-	bool has(const std::string &name);
-	
+	int count(const std::string &name) const;
+		
 	void set(const header &header);
-	const header &get(int pos) const;
 	const header &get(const std::string &name) const;
 
-	void sets(const std::vector<header> &headers);
-	const std::vector<header> &gets(const std::string &name) const;
-	
-	const std::vector<header> &gets() const;
+	void set(const headers *headers);
 
 private:
-	std::vector<header> _vheaders;
-	std::map<std::string, std::vector<header>> _mheaders;
+	std::multimap<std::string, header> _headers;
 };
 END_CUBE_HTTP_NS

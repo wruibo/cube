@@ -7,7 +7,7 @@ BEGIN_CUBE_HTTP_NS
 class session {
 public:
 	session() : _id(""), _maxage(0), _expires(0) {}
-	session(const std::string &id, int maxage);
+	session(const std::string &id, int maxage) : _id(id), _maxage(maxage), _expires(time(0) + _maxage) { }
 	~session() {}
 
 	//test if session has aged

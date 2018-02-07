@@ -1,16 +1,14 @@
 #include "cube\http\packer.h"
 BEGIN_CUBE_HTTP_NS
-int packer::pack(const header *header, std::string *str, std::string *err) {
+std::string packer::pack(const header &header) {
 	int sz = 0;
 	char buf[BUFSZ] = { 0 };
 
 	sz = snprintf(buf + sz, BUFSZ - sz, "\r\n");
-
-	str->assign(buf, sz);
-	return 0;
+	return std::string(buf, sz);
 }
 
-int packer::pack(const headers *headers, std::string *str, std::string *err) {
+std::string packer::pack(const headers &headers) {
 	for (int i = 0; i < headers->count(); i++) {
 		std::string strheader("");
 		pack(&headers->get(i), &strheader, err);

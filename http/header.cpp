@@ -5,28 +5,38 @@
 #include <stdarg.h>
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////header class/////////////////////////////////////////
+const header headers::_empty_header;
 
-bool headers::has(const std::string &name) {
+bool headers::has(const std::string &name) const {
+	return _headers.find(cube::str::lower(name)) != _headers.end();
+}
 
+int headers::count() const {
+	return (int)_headers.size();
+}
+
+int headers::count(const std::string &name) const {
+	return (int)_headers.count(cube::str::lower(name));
 }
 
 void headers::set(const header &header) {
-
+	_headers.insert(std::pair<std::string, http::header>(cube::str::lower(header.name()), header));
 }
 
 const header &headers::get(const std::string &name) const {
+	std::multimap<std::string, header>::const_iterator citer = _headers.find(cube::str::lower(name));
+	if (citer != _headers.end()) {
+		return citer->second;
+	}
 
+	return _empty_header;
 }
 
-void headers::sets(const std::vector<header> &headers) {
-
-}
-
-const std::vector<header> &headers::gets(const std::string &name) const {
-
-}
-
-const std::vector<header> &headers::gets() const {
-
+void headers::set(const headers *headers) {
+	std::multimap<std::string, header>::const_iterator citer = headers->_headers.begin(), citerend = headers->_headers.end();
+	while (citer != _headers.end()) {
+		set(citer->second);
+		citer++;
+	}
 }
 END_CUBE_HTTP_NS

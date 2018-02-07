@@ -1,153 +1,281 @@
 #include "cube\http\uri.h"
+#include "cube\str\url.h"
+#include "cube\str\part.h"
+#include "cube\str\format.h"
 BEGIN_CUBE_HTTP_NS
-//////////////////////////////////////////uri class/////////////////////////////////////////
-std::string uri::pack() const {
-	//data buffer
-	int sz = BUFSZ;
-	char data[BUFSZ] = { 0 };
+//////////////////////////////////////////param class/////////////////////////////////////////
+std::string param::pack() const {
+	std::string data("");
 
-	//data pos
-	int pos = 0;
+	data.append(str::escape(_name));
+	data.append("=");
+	data.append(str::escape(_value));
 
-	//add scheme
-	if (!_scheme.empty()) {
-		pos += snprintf(data + pos, sz - pos, "%s:", _scheme.c_str());
-	}
-
-	//add auth string
-	if (!_auth.empty()) {
-		pos += snprintf(data + pos, sz - pos, "//%s", _auth.c_str());
-	}
-
-	//add path string
-	if (!_path.empty()) {
-		pos += snprintf(data + pos, sz - pos, "/%s", _path.c_str());
-	}
-
-	//add query string
-	if (!_query.empty()) {
-		pos += snprintf(data + pos, sz - pos, "?%s", _query.c_str());
-	}
-
-	//add fragment string
-	if (!_fragment.empty()) {
-		pos += snprintf(data + pos, sz - pos, "#%s", _fragment.c_str());
-	}
-
-	return std::string(data, pos);
+	return data;
 }
 
-int uri::parse(const char *data, int sz, std::string *err) {
-	//skip space characters
-	const char *start = data, *end = data + sz;
-	while (::isspace(*start))
-		start++;
-
-	while (::isspace(*end))
-		end--;
-
-	if (start > end) {
-		safe_assign<std::string>(err, "uri: empty uri data.");
+int param::parse(const std::string &data, std::string *err) {
+	size_t pos = data.find('=');
+	if (pos == std::string::npos) {
+		safe_assign<std::string>(err, str::format("parse param: %s, missing seperator.", data.c_str()));
 		return -1;
 	}
 
-	const char *pos = start;
-	////parse scheme////
-	//find scheme end flag
-	while (*pos != ':' && pos < end)
-		pos++;
+	_name = str::unescape(data.substr(0, pos));
+	_value = str::unescape(data.substr(pos + 1));
+	return 0;
+}
 
-	//save scheme if flag found
-	if (*pos == ':') {
-		_scheme = std::string(start, pos - start);
-		start = ++pos;
-	} else {
-		pos = start;
+//////////////////////////////////////////params class/////////////////////////////////////////
+bool params::has(const std::string &name) const {
+	return _params.find(name) != _params.end();
+}
+
+std::string params::get(const std::string &name) const {
+	std::map<std::string, param>::const_iterator citer = _params.find(name);
+	if (citer != _params.end())
+		return citer->second.value();
+
+	return "";
+}
+
+std::string params::get(const std::string &name, const char *default) const {
+	std::map<std::string, param>::const_iterator citer = _params.find(name);
+	if (citer != _params.end())
+		return citer->second.value();
+
+	return std::string(default);
+}
+
+std::vector<std::string> params::gets(const std::string &name) const {
+	std::vector<std::string> values;
+
+	std::map<std::string, param>::const_iterator citer = _params.lower_bound(name), citerend = _params.upper_bound(name);
+	while (citer != citerend) {
+		values.push_back(citer->second.value());
+		citer++;
 	}
+	return values;
+}
 
-	////parse authority & address////
-	//find authority start flag
-	int slashnum = 0;
-	while (slashnum != 2 && pos < end) {
-		//skip space character
-		if (::isspace(*pos)) {
-			pos++;
-			continue;
-		}
+std::string params::pack() const {
+	std::string data("");
 
-		if (*pos == '/') {
-			slashnum++;
-			pos++;
+	bool first = true;
+	std::map<std::string, param>::const_iterator citer = _params.begin(), citerend = _params.end();
+	while (citer != citerend) {
+		if (first) {
+			data.append(citer->second.pack());
+			first = false;
 		} else {
-			//authority flag not found
-			break;
+			data.append("&");
+			data.append(citer->second.pack());
+		}
+		citer++;
+	}
+
+	return data;
+}
+
+int params::parse(const std::string &data, std::string *err) {
+	//split data by param seperator
+	std::vector<std::string> items;
+	str::part(data.c_str(), "&", items);
+
+	//parse key and value of each param
+	for (std::size_t i = 0; i < items.size(); i++) {
+		param p;
+		if(p.parse(items[i], err) != 0)
+			return -1;
+		_params.insert(std::pair<std::string, param>(p.name(), p));
+	}
+
+	return 0;
+}
+
+//////////////////////////////////////////uri class/////////////////////////////////////////
+std::string uri::pack() const {
+	std::string data("");
+
+	//add scheme
+	if (!_scheme.empty()) {
+		data.append(_scheme);
+		data.append(":");
+	}
+	
+	if (!_user.empty()) {
+		data.append("//");
+		data.append(_user);
+
+		if (!_pwd.empty()) {
+			data.append(":");
+			data.append(_pwd);
+		}
+
+		data.append("@");
+
+		if (!_host.empty()) {
+			data.append(_host);
+
+			if (!_port.empty()) {
+				data.append(":");
+				data.append(_port);
+			}
+		}
+	} else {
+		if (!_host.empty()) {
+			data.append("//");
+			data.append(_host);
+
+			if (!_port.empty()) {
+				data.append(":");
+				data.append(_port);
+			}
 		}
 	}
 
-	if (slashnum == 2) {
-		//set authority start pos
-		start = pos;
+	if (!_path.empty()) {
+		data.append("/");
+		data.append(_path);
+	}
 
-		//find authority end flag
-		while (*pos != '/' && *pos != '?' && *pos != '#' && pos < end)
-			pos++;
+	if (!_query.empty()) {
+		data.append("?");
+		data.append(_query);
+	}
 
-		//uri authority
-		std::string auth = std::string(start, pos - start);
+	if (!_fragment.empty()) {
+		data.append("#");
+		data.append(_fragment);
+	}
+	
+	return data;
+}
 
-		//parse address
-		if (_addr.parse(auth.c_str(), auth.length(), err) != 0)
-			return -1;
+int uri::parse(const std::string &data, std::string *err) {
+	size_t pos_right = std::string::npos;
 
-		//set authority
-		_auth = auth;
+	//find fragment start
+	size_t pos_fragment_start = data.rfind('#', pos_right);
+	if (pos_fragment_start != std::string::npos) {
+		if (pos_right != std::string::npos) {
+			_fragment = data.substr(pos_fragment_start, pos_right - pos_fragment_start - 1);
+		} else {
+			_fragment = data.substr(pos_fragment_start);
+		}
+		pos_right = pos_fragment_start;
+	}
 
-		//reset start pos
-		start = pos;
+	//find query start
+	size_t pos_query_start = data.rfind('?', pos_right);
+	if (pos_query_start != std::string::npos) {
+		if (pos_right != std::string::npos) {
+			_query = data.substr(pos_query_start, pos_right - pos_query_start - 1);
+		} else {
+			_query = data.substr(pos_query_start);
+		}
+		pos_right = pos_query_start;
+	}
+
+	//find path start
+	size_t pos_path_start = data.rfind('/', pos_right);
+	if (pos_path_start != std::string::npos) {
+		if (pos_right != std::string::npos) {
+			_path = data.substr(pos_path_start, pos_right - pos_path_start - 1);
+		} else {
+			_path = data.substr(pos_path_start);
+		}
+		pos_right = pos_path_start;
+	}
+
+	//find authority start
+	size_t pos_auth_start = data.rfind("//", pos_right);
+	if (pos_auth_start != std::string::npos) {
+		if (pos_right != std::string::npos) {
+			//find user end
+			size_t pos_user_end = data.rfind("@", pos_right, pos_right - pos_auth_start - 2);
+			if (pos_user_end != std::string::npos) {
+				//find password start
+				size_t pos_pwd_start = data.rfind(":", pos_user_end, pos_user_end - pos_auth_start - 2);
+				if (pos_pwd_start != std::string::npos) {
+					_user = data.substr(pos_auth_start + 2, pos_pwd_start - pos_auth_start - 2);
+					_pwd = data.substr(pos_pwd_start + 1, pos_user_end - pos_pwd_start - 1);
+				} else {
+					_user = data.substr(pos_auth_start + 2, pos_user_end - pos_auth_start - 3);
+				}
+
+
+			} else {
+				//find port start
+				size_t pos_port_start = data.rfind(":", pos_right,  pos_right - pos_auth_start - 2);
+				if (pos_port_start != std::string::npos) {
+					_host = data.substr(pos_auth_start + 2, pos_port_start - pos_auth_start - 2);
+					_port = data.substr(pos_port_start + 1, pos_right - pos_port_start - 1);
+				} else {
+					_host = data.substr(pos_auth_start + 2, pos_right - pos_auth_start - 2);
+				}
+			}
+		} else {
+
+		}
+		
+		pos_right = pos_auth_start;
+	}
+
+	//find scheme end
+	size_t pos_scheme_end = data.rfind(':', pos_right);
+	if (pos_scheme_end != std::string::npos) {
+		_scheme = data.substr(0, pos_scheme_end);
+	}
+
+
+
+
+
+
+	if (pos_auth_start != std::string::npos) {
+		//find scheme end
+		size_t pos_scheme_end = data.find(":");
+		if (pos_scheme_end != std::string::npos) {
+			//parse scheme
+			_scheme = data.substr(0, pos_scheme_end);
+
+			//find user end
+			size_t pos_user_end = data.find("@", pos_auth_start+2);
+			if (pos_user_end != std::string::npos) {
+				//find password start
+				size_t pos_pwd_start = data.find(":", pos_auth_start + 2, pos_user_end - pos_auth_start - 2);
+				if (pos_pwd_start != std::string::npos) {
+					_user = data.substr(pos_auth_start + 2, pos_pwd_start - pos_auth_start -  2);
+					_pwd = data.substr(pos_pwd_start + 1, pos_user_end - pos_pwd_start - 1);
+				} else {
+					_user = data.substr(pos_auth_start + 2, pos_auth_start - pos_auth_start - 2);
+				}
+			} else {
+
+			}
+
+			//find path start
+			size_t pos_path = data.find("/", pos_scheme + 3);
+			if (pos_path == std::string::npos) {
+				safe_assign<std::string>(err, str::format("parse uri: %s, missing path.", data.c_str()));
+				return -1;
+			}
+
+			//find query start
+			size_t pos_query = data.find
+
+		} else {
+			size_t pos_path = data.find("/", pos_scheme + 2);
+		}
+
+		
+
 	} else {
-		//authority flag not found, reset pos
-		pos = start;
-	}
+		size_t pos_scheme = data.find(":");
+		if (pos_scheme != std::string::npos) {
 
-	////parse path////
-	if (*pos == '/' && pos < end) {
-		//skip path start flag
-		start = pos++;
-
-		//find path end flag(query or fragment start flag)
-		while (*pos != '?' && *pos != '#' && pos < end)
-			pos++;
-
-		//save path
-		_path = std::string(start, pos - start);
-	}
-
-	////parse query & params////
-	if (*pos == '?' && pos < end) {
-		//skip query start flag
-		start = ++pos;
-
-		while (*pos != '#' && pos < end)
-			pos++;
-
-		//query string
-		std::string query = std::string(start, pos - start);
-
-		//parse params
-		if (_params.parse(query.c_str(), query.length(), err) != 0)
-			return -1;
-
-		//save query string
-		_query = query;
-	}
-
-	////parse fragment////
-	if (*pos == '#' && pos < end) {
-		//skip fragment start flag
-		start = ++pos;
-
-		//save fragment
-		_fragment = std::string(start, end - start);
+		}
 	}
 
 	return 0;

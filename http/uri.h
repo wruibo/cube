@@ -6,35 +6,28 @@
 *	abc://username:password@example.com:123/path/data?key=value#fragid1
 */
 #pragma once
-#include "cube\http\addr.h"
-#include "cube\http\param.h"
+#include "cube\http\def.h"
+#include <map>
+#include <vector>
 BEGIN_CUBE_HTTP_NS
-
-class auth {
-
-};
-
-class addr {
+class param {
 public:
-	addr() : _host(""), _port(0) {}
-	virtual ~addr() {}
+	param() : _name(""), _value("") {}
+	virtual ~param() {}
 
-	//pack/parse address with data string
+	const std::string &name() const { return _name; }
+	void name(const std::string &name) { _name = name; }
+
+	const std::string &value() const { return _value; }
+	void value(const std::string &value) { _value = value; }
+
+public:
 	std::string pack() const;
-	int parse(const char *data, int sz, std::string *err = 0);
-
-
-	//get/set address properties
-	const std::string& host() { return _host; }
-	void host(const std::string &host) { _host = host; }
-	ushort port() { return _port; }
-	void port(ushort port) { _port = port; }
+	int parse(const std::string &data, std::string *err);
 
 private:
-	//host address in url
-	std::string _host;
-	//port in url
-	ushort _port;
+	std::string _name;
+	std::string _value;
 };
 
 class params {
@@ -42,52 +35,38 @@ public:
 	params() {}
 	virtual ~params() {}
 
-	//pack/parse params with data string
-	std::string pack() const;
-	int parse(const char *data, int sz, std::string *err = 0);
+	bool has(const std::string &name) const;
+	std::string get(const std::string &name) const;
+	std::string get(const std::string &name, const char *default) const;
+	std::vector<std::string> gets(const std::string &name) const;
 
-	/*
-	*	get param value by specfied key
-	*@param key: in, param key
-	*@param val: in/out, value of specified key
-	*@return:
-	*	value of param
-	*/
-	std::vector<std::string> get(const std::string &key) const;
-	std::string get(const std::string &key, const char *default) const;
+public:
+	std::string pack() const;
+	int parse(const std::string &data, std::string *err);
+
 private:
-	//params
-	std::map<std::string, std::vector<std::string>> _params;
+	std::multimap<std::string, param> _params;
 };
 
 class uri {
 public:
-	uri() : _scheme(""), _auth(""), _path(""), _query(""), _fragment("") {}
+	uri() : _scheme(""), _user(""), _pwd(""), _host(""), _port(""), _path(""), _query(""), _fragment("") {}
 	virtual ~uri() {}
 
-	/*
-	*	get uri items
-	*/
-	const std::string& protocol() const { return _scheme; }
 	const std::string& scheme() const { return _scheme; }
-	const std::string& auth() const { return _auth; }
+	const std::string& user() const { return _user; }
+	const std::string& pwd() const { return _pwd; }
+	const std::string& host() const { return _host; }
+	const std::string& port() const { return _port; }
 	const std::string& path() const { return _path; }
 	const std::string& query() const { return _query; }
 	const std::string& fragment() const { return _fragment; }
 
-	const addr& addr() const { return _addr; }
 	const params& params() const { return _params; }
 
 public:
-	/*
-	*	pack uri object to string
-	*/
 	std::string pack() const;
-
-	/*
-	*	parse uri object from string
-	*/
-	int parse(const std::string &str, std::string *err = 0);
+	int parse(const std::string &data, std::string *err);
 
 private:
 	std::string _scheme;
@@ -102,6 +81,6 @@ private:
 	std::string _query;
 	std::string _fragment;
 
-	http::params _params; //parameters in query string
+	http::params _params;
 };
 END_CUBE_HTTP_NS

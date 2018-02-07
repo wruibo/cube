@@ -2,14 +2,6 @@
 #include <time.h>
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////cookie class/////////////////////////////////////////
-cookie::cookie(const std::string &name, const std::string &value) : _name(name), _value(value), _domain(""), _path(""), _expires(0), _maxage(0) {
-
-}
-
-cookie::cookie(const std::string &name, const std::string &value, const std::string &domain, const std::string &path, int maxage) : _name(name), _value(value), _domain(domain), _path(path), _maxage(maxage) {
-	_expires = time(0) + _maxage;
-}
-
 std::string cookie::expires() const {
 	return ctime(&_expires);
 }

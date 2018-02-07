@@ -2,10 +2,6 @@
 #include "cube\str\rand.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////session class/////////////////////////////////////////
-session::session(const std::string &id, int maxage) : _id(id), _maxage(maxage) {
-	_expires = time(0) + _maxage;
-}
-
 bool session::aged(time_t now) {
 	if (now > _expires)
 		return true;

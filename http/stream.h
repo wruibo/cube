@@ -1,59 +1,54 @@
 #pragma once
+#include "cube\http\message.h"
 #include "cube\http\request.h"
 #include "cube\http\response.h"
+#include <fstream>
+#include <sstream>
 BEGIN_CUBE_HTTP_NS
-class stream {
+//CRLF string buffer
+class crlfbuffer {
 public:
-	/*
-	*	take data from stream
-	*@param data: in/out, data to take to
-	*@param sz: in, data size
-	*@return:
-	*	size taked
-	*/
-	virtual int read(char *data, int sz) = 0;
+	crlfbuffer() : _buffer("") {}
+	virtual ~crlfbuffer() {}
 
-	/*
-	*	feed data to stream
-	*@param data: in, data to feed
-	*@param sz: in, data size
-	*@return:
-	*	size feeded
-	*/
-	virtual int write(const char *data, int sz) = 0;
+	std::streamsize put(const char *data, std::streamsize sz);
 
-	/*
-	*	get feed data size in bytes
-	*@return:
-	*	data size in bytes
-	*/
-	virtual int size() const = 0;
+	std::string data() const;
 
-	/*
-	*	check if feed is end of read, which means all data has read
-	*@return:
-	*	true - no more data can be read, false - more data can be read
-	*/
-	virtual bool endr() const = 0;
+	const std::string &buffer() const;
 
-	/*
-	*	check if feed is end of write, which means no more data can be write
-	*@reutrn:
-	*	true - no more data can be write, false - more data can be write
-	*/
-	virtual bool endw() const = 0;
+	bool full() const;
 
-	/*
-	*	check if feed is done, which means completed
-	*@return:
-	*	true - done, false - not done
-	*/
-	virtual bool done() const = 0;
-
-	/*
-	*	check if feed if empty, which means no data
-	*/
-	virtual bool empty() const = 0;
+	void clear();
+private:
+	std::string _buffer;
 };
 
+//http message stream
+class httpstream {
+public:
+	httpstream(http::message *message) : _message(message), _head_stream(nullptr), _body_stream(nullptr) {}
+	virtual ~httpstream() {}
+	
+	std::streamsize read(char *data, std::streamsize sz);
+
+	std::streamsize write(const char *data, std::streamsize sz);
+
+public:
+	void make();
+
+	bool full() const;
+
+private:
+	//CRLF string buffer
+	crlfbuffer _crlfbuffer;
+
+	//http message
+	std::shared_ptr<http::message> _message;
+
+	//http head data stream
+	std::shared_ptr<std::iostream> _head_stream;
+	//http body data stream
+	std::shared_ptr<std::iostream> _body_stream;
+};
 END_CUBE_HTTP_NS
