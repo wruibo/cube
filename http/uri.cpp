@@ -191,32 +191,48 @@ int uri::parse(const std::string &data, std::string *err) {
 	//find authority start
 	size_t pos_auth_start = data.rfind("//", pos_right);
 	if (pos_auth_start != std::string::npos) {
-		if (pos_right != std::string::npos) {
-			//find user end
-			size_t pos_user_end = data.rfind("@", pos_right, pos_right - pos_auth_start - 2);
-			if (pos_user_end != std::string::npos) {
-				//find password start
-				size_t pos_pwd_start = data.rfind(":", pos_user_end, pos_user_end - pos_auth_start - 2);
-				if (pos_pwd_start != std::string::npos) {
-					_user = data.substr(pos_auth_start + 2, pos_pwd_start - pos_auth_start - 2);
-					_pwd = data.substr(pos_pwd_start + 1, pos_user_end - pos_pwd_start - 1);
-				} else {
-					_user = data.substr(pos_auth_start + 2, pos_user_end - pos_auth_start - 3);
-				}
-
-
+		//find user end
+		size_t pos_user_end = data.find('@', pos_auth_start);
+		if (pos_user_end != std::string::npos && pos_user_end < pos_right) {
+			//find password start
+			size_t pos_pwd_start = data.find(':', pos_auth_start);
+			if (pos_pwd_start != std::string::npos && pos_pwd_start < pos_user_end) {
+				_user = data.substr(pos_auth_start + 2, pos_pwd_start - pos_auth_start - 2);
+				_pwd = data.substr(pos_pwd_start + 1, pos_user_end - pos_pwd_start - 1);
 			} else {
-				//find port start
-				size_t pos_port_start = data.rfind(":", pos_right,  pos_right - pos_auth_start - 2);
-				if (pos_port_start != std::string::npos) {
-					_host = data.substr(pos_auth_start + 2, pos_port_start - pos_auth_start - 2);
-					_port = data.substr(pos_port_start + 1, pos_right - pos_port_start - 1);
-				} else {
-					_host = data.substr(pos_auth_start + 2, pos_right - pos_auth_start - 2);
-				}
+				_user = data.substr(pos_auth_start + 2, pos_user_end - pos_auth_start - 3);
 			}
-		} else {
 
+			//find port start
+			size_t pos_port_start = data.find(':', pos_user_end);
+			if (pos_port_start != std::string::npos && pos_port_start < pos_right) {
+				_host = data.substr(pos_user_end + 1, pos_port_start - pos_user_end - 1);
+				if (pos_right != std::string::npos)
+					_port = data.substr(pos_port_start + 1, pos_right - pos_port_start - 2);
+				else
+					_port = data.substr(pos_port_start + 1, pos_right);
+			} else {
+				if (pos_right != std::string::npos)
+					_host = data.substr(pos_auth_start + 2, pos_right - pos_auth_start - 3);
+				else
+					_host = data.substr(pos_auth_start + 2, pos_right);
+			}
+
+		} else {
+			//find port start
+			size_t pos_port_start = data.find(':', pos_auth_start);
+			if (pos_port_start != std::string::npos && pos_port_start < pos_right) {
+				_host = data.substr(pos_auth_start + 2, pos_port_start - pos_auth_start - 3);
+				if(pos_right != std::string::npos)
+					_port = data.substr(pos_port_start + 1, pos_right - pos_port_start - 2);
+				else
+					_port = data.substr(pos_port_start + 1, pos_right);
+			} else {
+				if(pos_right != std::string::npos)
+					_host = data.substr(pos_auth_start + 2, pos_right - pos_auth_start - 3);
+				else
+					_host = data.substr(pos_auth_start + 2, pos_right);
+			}
 		}
 		
 		pos_right = pos_auth_start;
@@ -226,56 +242,6 @@ int uri::parse(const std::string &data, std::string *err) {
 	size_t pos_scheme_end = data.rfind(':', pos_right);
 	if (pos_scheme_end != std::string::npos) {
 		_scheme = data.substr(0, pos_scheme_end);
-	}
-
-
-
-
-
-
-	if (pos_auth_start != std::string::npos) {
-		//find scheme end
-		size_t pos_scheme_end = data.find(":");
-		if (pos_scheme_end != std::string::npos) {
-			//parse scheme
-			_scheme = data.substr(0, pos_scheme_end);
-
-			//find user end
-			size_t pos_user_end = data.find("@", pos_auth_start+2);
-			if (pos_user_end != std::string::npos) {
-				//find password start
-				size_t pos_pwd_start = data.find(":", pos_auth_start + 2, pos_user_end - pos_auth_start - 2);
-				if (pos_pwd_start != std::string::npos) {
-					_user = data.substr(pos_auth_start + 2, pos_pwd_start - pos_auth_start -  2);
-					_pwd = data.substr(pos_pwd_start + 1, pos_user_end - pos_pwd_start - 1);
-				} else {
-					_user = data.substr(pos_auth_start + 2, pos_auth_start - pos_auth_start - 2);
-				}
-			} else {
-
-			}
-
-			//find path start
-			size_t pos_path = data.find("/", pos_scheme + 3);
-			if (pos_path == std::string::npos) {
-				safe_assign<std::string>(err, str::format("parse uri: %s, missing path.", data.c_str()));
-				return -1;
-			}
-
-			//find query start
-			size_t pos_query = data.find
-
-		} else {
-			size_t pos_path = data.find("/", pos_scheme + 2);
-		}
-
-		
-
-	} else {
-		size_t pos_scheme = data.find(":");
-		if (pos_scheme != std::string::npos) {
-
-		}
 	}
 
 	return 0;
