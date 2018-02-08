@@ -57,8 +57,6 @@ std::streamsize httpstream::write(const char *data, std::streamsize sz) {
 
 			//create body entity stream
 			if (_message->has_head_transfered()) {
-				//set head has transfered
-				_message->set_head_transfered();
 				//get body output stream
 				_body_stream = _message->get_body_stream();
 			}
@@ -80,7 +78,6 @@ std::streamsize httpstream::write(const char *data, std::streamsize sz) {
 			//body data hash transferd
 			_message->set_body_transfered(0);
 		}
-		
 	}
 
 	return szw;
@@ -91,7 +88,7 @@ void httpstream::make() {
 }
 
 bool httpstream::full() const {
-	return _message->has_full_head() && _message->has_full_body();
+	return _message->has_head_transfered() && _message->has_body_transfered();
 }
 
 END_CUBE_HTTP_NS

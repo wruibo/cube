@@ -12,16 +12,18 @@ public:
 protected:
 	virtual int on_head_transfered(std::string *err) = 0;
 
+
 public:
 	bool has_body_entity() const;
 	bool has_body_transfered() const;
 	void set_body_transfered(std::streamsize sz);
+	
+	bool has_head_transfered() const;
+	int set_head_line(const std::string &line, std::string *err);
+	
+	std::shared_ptr<std::iostream> get_head_stream() const;
 	std::shared_ptr<std::iostream> get_body_stream() const;
 
-	void set_head_transfered();
-	bool has_head_transfered() const;
-	void set_head_line(const std::string &line);
-	
 public:
 	std::streamsize get_content_length() const;
 
@@ -32,6 +34,8 @@ protected:
 	std::list<std::string> _header_lines;
 
 protected:
+	//http message version
+	std::string _version;
 	//http message headers
 	http::headers _headers;
 	//http message body entity

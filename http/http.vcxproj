@@ -143,57 +143,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="addr.cpp" />
-    <ClCompile Include="body.cpp" />
-    <ClCompile Include="charset.cpp" />
     <ClCompile Include="cookie.cpp" />
     <ClCompile Include="entity.cpp" />
-    <ClCompile Include="field.cpp" />
     <ClCompile Include="header.cpp" />
     <ClCompile Include="http.cpp" />
     <ClCompile Include="message.cpp" />
-    <ClCompile Include="meta.cpp" />
     <ClCompile Include="mime.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="packer.cpp" />
-    <ClCompile Include="param.cpp" />
     <ClCompile Include="parser.cpp" />
-    <ClCompile Include="query.cpp" />
     <ClCompile Include="request.cpp" />
     <ClCompile Include="response.cpp" />
-    <ClCompile Include="feed.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="status.cpp" />
     <ClCompile Include="stream.cpp" />
     <ClCompile Include="uri.cpp" />
-    <ClCompile Include="version.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="addr.h" />
-    <ClInclude Include="body.h" />
-    <ClInclude Include="charset.h" />
     <ClInclude Include="cookie.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="entity.h" />
-    <ClInclude Include="field.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="http.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="meta.h" />
     <ClInclude Include="mime.h" />
     <ClInclude Include="object.h" />
-    <ClInclude Include="packer.h" />
-    <ClInclude Include="param.h" />
-    <ClInclude Include="parser.h" />
-    <ClInclude Include="query.h" />
     <ClInclude Include="request.h" />
     <ClInclude Include="response.h" />
-    <ClInclude Include="feed.h" />
     <ClInclude Include="session.h" />
     <ClInclude Include="status.h" />
     <ClInclude Include="stream.h" />
     <ClInclude Include="uri.h" />
-    <ClInclude Include="version.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

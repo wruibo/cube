@@ -16,8 +16,6 @@ protected:
 private:
 	//http request method
 	std::string _method;
-	//http version
-	std::string _version;
 	//http request uri
 	http::uri _uri;
 };

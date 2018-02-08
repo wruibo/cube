@@ -18,12 +18,6 @@
     <ClCompile Include="http.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="addr.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="param.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="uri.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -34,9 +28,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="status.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="query.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="header.cpp">
@@ -51,31 +42,13 @@
     <ClCompile Include="entity.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="charset.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="mime.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="meta.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="feed.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="version.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="body.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="message.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="field.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="parser.cpp">
@@ -95,12 +68,6 @@
     <ClInclude Include="def.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="addr.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="param.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="uri.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -111,9 +78,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="status.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="query.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="header.h">
@@ -128,37 +92,13 @@
     <ClInclude Include="entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="charset.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="mime.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="meta.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="feed.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="version.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="body.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stream.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="message.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="field.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="parser.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="packer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="object.h">
