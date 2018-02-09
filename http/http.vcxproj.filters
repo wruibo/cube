@@ -18,9 +18,6 @@
     <ClCompile Include="http.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="uri.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="cookie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -42,22 +39,13 @@
     <ClCompile Include="entity.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mime.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="stream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="message.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="parser.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="packer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="object.cpp">
+    <ClCompile Include="base.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,16 +56,10 @@
     <ClInclude Include="def.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="uri.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="cookie.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="session.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="status.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="header.h">
@@ -92,16 +74,16 @@
     <ClInclude Include="entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="mime.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="stream.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="message.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="object.h">
+    <ClInclude Include="base.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="safety.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

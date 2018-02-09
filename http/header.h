@@ -1,26 +1,68 @@
 #pragma once
-#include "cube\http\def.h"
-#include <map>
-#include <vector>
+#include "cube\http\base.h"
 BEGIN_CUBE_HTTP_NS
-
-//http message header class
-class header {
+//header element
+class element : public nvpair {
 public:
-	header() : _name(""), _value("") { }
-	header(const std::string &name, const std::string &value) : _name(name), _value(value) {}
-	virtual ~header() {}
+	element() {}
+	element(const std::string &name, const std::string &value) : nvpair(name, value) {}
+	element(const std::string &name, const std::string &value, const params &params) : nvpair(name, value), _params(params) {}
+	virtual ~element() {}
 
+	std::string get_param(const std::string &name) { return _params.get(name); }
+	std::string get_param(const std::string &name, const char *default) { return _params.get(name, default); }
 
-	const std::string &name() const { return _name; }
-	void name(const std::string &name) { _name = name; }
+	element& add_param(const http::param &param) { _params.add(param); return *this; }
+	element& add_param(const std::string &name, const std::string &value) { _params.add(name, value); return *this; }
 
-	const std::string &value() const { return _value; }
-	void value(const std::string &value) { _value = value; }
+	void set_params(const params &params) { _params = params; }
+	const params &get_params() const { return _params; }
+
+public:
+	std::string pack() const;
+	int parse(const std::string &data, std::string *err);
 
 private:
-	std::string _name;
-	std::string _value;
+	//parameter of element
+	params _params;
+};
+
+//header elements
+class elements {
+public:
+	elements() {}
+	virtual ~elements() {}
+
+	int has(const std::string &name) const;
+	int count() const { return (int)_elements.size(); }
+
+	elements& add(const element &element) { _elements.push_back(element); return *this; }
+
+	element get(int index) const { return _elements[index]; }
+	element get(const std::string &name) const;
+
+public:
+	std::string pack() const;
+	int parse(const std::string &data, std::string *err);
+
+private:
+	std::vector<element> _elements;
+};
+
+//http message header class
+class header : public nvpair {
+public:
+	header() { }
+	header(const std::string &name, const std::string &value) : nvpair(name, value) {}
+	virtual ~header() {}
+
+	elements get_elements() const;
+
+public:
+	std::string pack() const;
+	int parse(std::string *err);
+	int parse(const std::string &data, std::string *err);
+private:
 };
 
 //http message headers class
@@ -40,7 +82,11 @@ public:
 
 	void set(const headers *headers);
 
+public:
+	std::string pack() const;
+	int parse(const std::string &data, std::string *err);
+
 private:
-	std::multimap<std::string, header> _headers;
+	std::vector<header> _headers;
 };
 END_CUBE_HTTP_NS

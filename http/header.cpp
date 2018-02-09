@@ -4,6 +4,16 @@
 #include "cube\str\format.h"
 #include <stdarg.h>
 BEGIN_CUBE_HTTP_NS
+
+//////////////////////////////////////////elements class///////////////////////////////////////
+int elements::has(const std::string &name) const {
+	
+}
+
+element elements::get(const std::string &name) const {
+
+}
+
 //////////////////////////////////////////header class/////////////////////////////////////////
 const header headers::_empty_header;
 

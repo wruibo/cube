@@ -143,37 +143,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base.cpp" />
     <ClCompile Include="cookie.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="header.cpp" />
     <ClCompile Include="http.cpp" />
     <ClCompile Include="message.cpp" />
-    <ClCompile Include="mime.cpp" />
-    <ClCompile Include="object.cpp" />
-    <ClCompile Include="packer.cpp" />
-    <ClCompile Include="parser.cpp" />
     <ClCompile Include="request.cpp" />
     <ClCompile Include="response.cpp" />
     <ClCompile Include="session.cpp" />
     <ClCompile Include="status.cpp" />
     <ClCompile Include="stream.cpp" />
-    <ClCompile Include="uri.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="base.h" />
     <ClInclude Include="cookie.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="header.h" />
     <ClInclude Include="http.h" />
     <ClInclude Include="message.h" />
-    <ClInclude Include="mime.h" />
-    <ClInclude Include="object.h" />
     <ClInclude Include="request.h" />
     <ClInclude Include="response.h" />
+    <ClInclude Include="safety.h" />
     <ClInclude Include="session.h" />
-    <ClInclude Include="status.h" />
     <ClInclude Include="stream.h" />
-    <ClInclude Include="uri.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

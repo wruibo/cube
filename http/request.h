@@ -4,6 +4,10 @@
 #include <mutex>
 #include <memory>
 BEGIN_CUBE_HTTP_NS
+class request_line {
+
+};
+
 //http request class
 class request : public message{
 public:

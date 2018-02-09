@@ -1,4 +1,5 @@
-#include "cube\http\uri.h"
+#include "cube\http\base.h"
+#include "cube\http\safety.h"
 #include "cube\str\url.h"
 #include "cube\str\part.h"
 #include "cube\str\format.h"
@@ -7,9 +8,9 @@ BEGIN_CUBE_HTTP_NS
 std::string param::pack() const {
 	std::string data("");
 
-	data.append(str::escape(_name));
+	data.append(str::escape(name()));
 	data.append("=");
-	data.append(str::escape(_value));
+	data.append(str::escape(value()));
 
 	return data;
 }
@@ -21,40 +22,44 @@ int param::parse(const std::string &data, std::string *err) {
 		return -1;
 	}
 
-	_name = str::unescape(data.substr(0, pos));
-	_value = str::unescape(data.substr(pos + 1));
+	name(str::unescape(data.substr(0, pos)));
+	value(str::unescape(data.substr(pos + 1)));
 	return 0;
 }
 
 //////////////////////////////////////////params class/////////////////////////////////////////
 bool params::has(const std::string &name) const {
-	return _params.find(name) != _params.end();
+	for (size_t i = 0; i < _params.size(); i++) {
+		if (_params[i].name() == name) {
+			return true;
+		}
+	}
+
+	return false;
 }
 
 std::string params::get(const std::string &name) const {
-	std::map<std::string, param>::const_iterator citer = _params.find(name);
-	if (citer != _params.end())
-		return citer->second.value();
-
-	return "";
+	return get(name, "");
 }
 
 std::string params::get(const std::string &name, const char *default) const {
-	std::map<std::string, param>::const_iterator citer = _params.find(name);
-	if (citer != _params.end())
-		return citer->second.value();
+	for (size_t i = 0; i < _params.size(); i++) {
+		if (_params[i].name() == name) {
+			return _params[i].value();
+		}
+	}
 
-	return std::string(default);
+	return default;
 }
 
 std::vector<std::string> params::gets(const std::string &name) const {
 	std::vector<std::string> values;
-
-	std::map<std::string, param>::const_iterator citer = _params.lower_bound(name), citerend = _params.upper_bound(name);
-	while (citer != citerend) {
-		values.push_back(citer->second.value());
-		citer++;
+	for (size_t i = 0; i < _params.size(); i++) {
+		if (_params[i].name() == name) {
+			values.push_back(_params[i].value());
+		}
 	}
+
 	return values;
 }
 
@@ -62,16 +67,14 @@ std::string params::pack() const {
 	std::string data("");
 
 	bool first = true;
-	std::map<std::string, param>::const_iterator citer = _params.begin(), citerend = _params.end();
-	while (citer != citerend) {
+	for (size_t i = 0; i < _params.size(); i++) {
 		if (first) {
-			data.append(citer->second.pack());
+			data.append(_params[i].pack());
 			first = false;
 		} else {
 			data.append("&");
-			data.append(citer->second.pack());
+			data.append(_params[i].pack());
 		}
-		citer++;
 	}
 
 	return data;
@@ -85,9 +88,9 @@ int params::parse(const std::string &data, std::string *err) {
 	//parse key and value of each param
 	for (std::size_t i = 0; i < items.size(); i++) {
 		param p;
-		if(p.parse(items[i], err) != 0)
+		if (p.parse(items[i], err) != 0)
 			return -1;
-		_params.insert(std::pair<std::string, param>(p.name(), p));
+		_params.push_back(p);
 	}
 
 	return 0;
@@ -102,7 +105,7 @@ std::string uri::pack() const {
 		data.append(_scheme);
 		data.append(":");
 	}
-	
+
 	if (!_user.empty()) {
 		data.append("//");
 		data.append(_user);
@@ -148,7 +151,7 @@ std::string uri::pack() const {
 		data.append("#");
 		data.append(_fragment);
 	}
-	
+
 	return data;
 }
 
@@ -223,18 +226,18 @@ int uri::parse(const std::string &data, std::string *err) {
 			size_t pos_port_start = data.find(':', pos_auth_start);
 			if (pos_port_start != std::string::npos && pos_port_start < pos_right) {
 				_host = data.substr(pos_auth_start + 2, pos_port_start - pos_auth_start - 3);
-				if(pos_right != std::string::npos)
+				if (pos_right != std::string::npos)
 					_port = data.substr(pos_port_start + 1, pos_right - pos_port_start - 2);
 				else
 					_port = data.substr(pos_port_start + 1, pos_right);
 			} else {
-				if(pos_right != std::string::npos)
+				if (pos_right != std::string::npos)
 					_host = data.substr(pos_auth_start + 2, pos_right - pos_auth_start - 3);
 				else
 					_host = data.substr(pos_auth_start + 2, pos_right);
 			}
 		}
-		
+
 		pos_right = pos_auth_start;
 	}
 
