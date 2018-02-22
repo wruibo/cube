@@ -6,39 +6,27 @@
 BEGIN_CUBE_HTTP_NS
 class message {
 public:
-	message() : _start_line(""), _entity(nullptr) {}
-	virtual ~message() {}
+	message() : _start_line(""), _entity(0) {
+	}
 
-protected:
-	virtual int on_head_transfered(std::string *err) = 0;
-
-
-public:
-	bool has_body_entity() const;
-	bool has_body_transfered() const;
-	void set_body_transfered(std::streamsize sz);
-	
-	bool has_head_transfered() const;
-	int set_head_line(const std::string &line, std::string *err);
-	
-	std::shared_ptr<std::iostream> get_head_stream() const;
-	std::shared_ptr<std::iostream> get_body_stream() const;
+	virtual ~message() {
+		if (_entity != 0) {
+			delete _entity;
+			_entity = 0;
+		}
+	}
 
 public:
-	std::streamsize get_content_length() const;
+	const std::string &get_start_line() {
+		return _start_line;
+	}
 
 protected:
-	//http message start line
+	//message start line
 	std::string _start_line;
-	//http message header lines
+	//message header lines
 	std::list<std::string> _header_lines;
-
-protected:
-	//http message version
-	std::string _version;
-	//http message headers
-	http::headers _headers;
-	//http message body entity
-	std::shared_ptr<http::entity> _entity;
+	//message entity object
+	http::entity * _entity;
 };
 END_CUBE_HTTP_NS

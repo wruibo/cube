@@ -4,6 +4,15 @@
 #include "cube\str\format.h"
 #include <stdarg.h>
 BEGIN_CUBE_HTTP_NS
+//////////////////////////////////////////element class///////////////////////////////////////
+std::string element::pack() const {
+
+}
+
+int element::parse(const std::string &data, std::string *err) {
+	
+}
+
 
 //////////////////////////////////////////elements class///////////////////////////////////////
 int elements::has(const std::string &name) const {

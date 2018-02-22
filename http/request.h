@@ -1,26 +1,26 @@
 #pragma once
-#include "cube\http\uri.h"
-#include "cube\http\message.h"
+#include "cube\http\query.h"
+#include "cube\http\header.h"
+#include "cube\http\entity.h"
 #include <mutex>
 #include <memory>
 BEGIN_CUBE_HTTP_NS
-class request_line {
-
-};
-
 //http request class
-class request : public message{
+class request {
 public:
 	request() {}
 	virtual ~request() {}
 
-protected:
-	virtual int on_head_transfered(std::string *err);
+	const http::query &query() const { return _query; }
+	const http::header &header() const { return _header; }
+	const http::entity &entity() const { return _entity; }
 
 private:
-	//http request method
-	std::string _method;
-	//http request uri
-	http::uri _uri;
+	//http request query
+	http::query _query;
+	//http request header
+	http::header _header;
+	//http request entity
+	http::entity _entity;
 };
 END_CUBE_HTTP_NS

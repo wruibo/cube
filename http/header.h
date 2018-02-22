@@ -67,7 +67,6 @@ private:
 
 //http message headers class
 class headers {
-	static const header _empty_header;
 public:
 	headers() {}
 	virtual ~headers() {}
