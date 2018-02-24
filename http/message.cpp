@@ -1,5 +1,0 @@
-#include "cube\http\message.h"
-BEGIN_CUBE_HTTP_NS
-////////////////////////////////////http message class/////////////////////////////
-
-END_CUBE_HTTP_NS

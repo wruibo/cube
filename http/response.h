@@ -10,10 +10,21 @@ public:
 	virtual ~response() {}
 
 public:
-	http::status &status() { return _status; }
-	http::header &header() { return _header; }
-	http::entity &entity() { return _entity; }
-	http::cookie &cookie() { return _cookie; }
+	http::status &status() {
+		return _status; 
+	}
+
+	http::header &header() {
+		return _header; 
+	}
+	
+	http::entity &entity() {
+		return _entity;
+	}
+
+	http::cookie &cookie() {
+		return _cookie;
+	}
 
 private:
 	//response status

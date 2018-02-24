@@ -1,5 +1,4 @@
 #pragma once
-#include "cube\http\message.h"
 #include "cube\http\request.h"
 #include "cube\http\response.h"
 #include <fstream>

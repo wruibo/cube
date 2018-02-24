@@ -11,9 +11,17 @@ public:
 	request() {}
 	virtual ~request() {}
 
-	const http::query &query() const { return _query; }
-	const http::header &header() const { return _header; }
-	const http::entity &entity() const { return _entity; }
+	const http::query &query() const { 
+		return _query; 
+	}
+
+	const http::header &header() const {
+		return _header;
+	}
+
+	const http::entity &entity() const {
+		return _entity; 
+	}
 
 private:
 	//http request query

@@ -2,60 +2,31 @@
 #include "cube\str\case.h"
 #include "cube\str\part.h"
 #include "cube\str\format.h"
-#include <stdarg.h>
+#include <algorithm>
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////element class///////////////////////////////////////
-std::string element::pack() const {
 
+//////////////////////////////////////////field class///////////////////////////////////////
+bool field::operator==(const field &field) const {
+	return str::lower(name()) == str::lower(field.name());
 }
 
-int element::parse(const std::string &data, std::string *err) {
-	
-}
-
-
-//////////////////////////////////////////elements class///////////////////////////////////////
-int elements::has(const std::string &name) const {
-	
-}
-
-element elements::get(const std::string &name) const {
-
+bool field::operator==(const std::string &name) const {
+	return str::lower(field::name()) == str::lower(name);
 }
 
 //////////////////////////////////////////header class/////////////////////////////////////////
-const header headers::_empty_header;
-
-bool headers::has(const std::string &name) const {
-	return _headers.find(cube::str::lower(name)) != _headers.end();
+void header::add(const std::string &name, const std::string &value) {
+	_fields.push_back(field(name, value));
 }
 
-int headers::count() const {
-	return (int)_headers.size();
-}
-
-int headers::count(const std::string &name) const {
-	return (int)_headers.count(cube::str::lower(name));
-}
-
-void headers::set(const header &header) {
-	_headers.insert(std::pair<std::string, http::header>(cube::str::lower(header.name()), header));
-}
-
-const header &headers::get(const std::string &name) const {
-	std::multimap<std::string, header>::const_iterator citer = _headers.find(cube::str::lower(name));
-	if (citer != _headers.end()) {
-		return citer->second;
-	}
-
-	return _empty_header;
-}
-
-void headers::set(const headers *headers) {
-	std::multimap<std::string, header>::const_iterator citer = headers->_headers.begin(), citerend = headers->_headers.end();
-	while (citer != _headers.end()) {
-		set(citer->second);
-		citer++;
+void header::set(const std::string &name, const std::string &value) {
+	std::vector<field>::iterator iter = std::find(_fields.begin(), _fields.end(), name);
+	if (iter != _fields.end()) {
+		(*iter).value(value);
+	} else {
+		_fields.push_back(field(name, value));
 	}
 }
+
 END_CUBE_HTTP_NS
