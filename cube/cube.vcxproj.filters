@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="cc\crontab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cc\looper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cc\reactor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cc\thread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cc\timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cfg\ini.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clt\http.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="clt\tcp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\dir.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\exp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\fd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\part.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fd\strip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file\dir.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file\fd.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file\file.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="file\path.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\cookie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\entity.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\header.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\parser.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\query.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\request.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\response.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\session.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\status.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\stream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\log.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\logger.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\printer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\strip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log\util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mtd\crontab.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mtd\looper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mtd\reactor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mtd\thread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mtd\timer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\context.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\error.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\init.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\iocp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\service.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\session.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\socket.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="net\system.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\case.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\cast.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\find.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\format.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\hex.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\part.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\print.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\rand.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\split.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\str.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\strip.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\type.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\url.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="svr\http.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="svr\tcp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util\exp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util\ios.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util\mm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util\tm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="util\util.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cc\crontab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\looper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\reactor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\task.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cc\timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="cfg\ini.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clt\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clt\http.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="clt\tcp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\dir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\exp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\fd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\part.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\path.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fd\strip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file\dir.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file\fd.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file\file.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="file\path.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\cookie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\entity.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\header.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\pair.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\param.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\parser.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\query.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\request.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\response.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\safety.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\session.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\status.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\stream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\logger.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\printer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\strip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log\util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\crontab.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\looper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\reactor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\task.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\thread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="mtd\timer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\context.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\init.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\iocp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\service.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\session.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\socket.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="net\system.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\case.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\cast.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\find.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\format.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\hex.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\part.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\print.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\rand.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\split.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\str.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\strip.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\type.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\url.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svr\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svr\http.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svr\tcp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\def.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\exp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\ios.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\mm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\safe.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\tm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\tsc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="util\util.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

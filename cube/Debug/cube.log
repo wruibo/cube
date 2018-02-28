@@ -1,0 +1,146 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 crontab.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 cc\crontab.cpp, mtd\crontab.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 looper.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 cc\looper.cpp, mtd\looper.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 reactor.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 cc\reactor.cpp, mtd\reactor.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 thread.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 cc\thread.cpp, mtd\thread.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 timer.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 cc\timer.cpp, mtd\timer.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 http.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 clt\http.cpp, svr\http.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 tcp.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 clt\tcp.cpp, svr\tcp.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 dir.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\dir.cpp, file\dir.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 exp.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\exp.cpp, util\exp.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 fd.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\fd.cpp, file\fd.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 file.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\file.cpp, file\file.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 part.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\part.cpp, str\part.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 path.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\path.cpp, file\path.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 strip.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 fd\strip.cpp, log\strip.cpp, str\strip.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 session.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 http\session.cpp, net\session.cpp。
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(937,5): warning MSB8027: 名为 util.cpp 的两个或更多文件将生成到同一位置的输出。这会导致错误的生成结果。   调用的文件是 log\util.cpp, util\util.cpp。
+  util.cpp
+  tm.cpp
+c:\workspace\project\personal\project\cube\cube\util\tm.cpp(43): error C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(495): note: 参见“gmtime”的声明
+c:\workspace\project\personal\project\cube\cube\util\tm.cpp(46): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(505): note: 参见“localtime”的声明
+  mm.cpp
+  ios.cpp
+  exp.cpp
+  tcp.cpp
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(100): error C3646: “_socket”: 未知重写说明符
+  c:\workspace\project\personal\project\cube\cube\svr\tcp.h(107): note: 参见对正在编译的 类 模板 实例化 "cube::svr::tcp::server<sessionimpl>" 的引用
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(100): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(103): error C3646: “_looper”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(103): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+  http.cpp
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(100): error C3646: “_socket”: 未知重写说明符
+  c:\workspace\project\personal\project\cube\cube\svr\tcp.h(107): note: 参见对正在编译的 类 模板 实例化 "cube::svr::tcp::server<sessionimpl>" 的引用
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(100): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(103): error C3646: “_looper”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\svr\tcp.h(103): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2039: “params”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\query.h(3): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2143: 语法错误: 缺少“;”(在“&”的前面)
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2334: “{”的前面有意外标记；跳过明显的函数体
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C2327: “cube::http::query::params”: 不是类型名称、静态或枚举数
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C2039: “params”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\query.h(3): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C3646: “_params”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\query.h(6): error C2789: “cube::http::query::params”: 必须初始化常量限定类型的对象
+  c:\workspace\project\personal\project\cube\cube\http\query.h(11): note: 参见“cube::http::query::params”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2039: “message”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\stream.h(6): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2061: 语法错误: 标识符“message”
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2039: “message”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\stream.h(6): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2065: “message”: 未声明的标识符
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2923: “std::shared_ptr”: 对于参数“_Ty”，“message”不是有效的 模板 类型变量
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2065: “message”: 未声明的标识符
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
+  url.cpp
+  type.cpp
+  strip.cpp
+  str.cpp
+  split.cpp
+  rand.cpp
+  print.cpp
+  part.cpp
+  hex.cpp
+  format.cpp
+  find.cpp
+  cast.cpp
+  case.cpp
+  正在生成代码...
+  正在编译...
+  system.cpp
+  socket.cpp
+  session.cpp
+  service.cpp
+  iocp.cpp
+  init.cpp
+  error.cpp
+  context.cpp
+  timer.cpp
+  thread.cpp
+  reactor.cpp
+  looper.cpp
+  crontab.cpp
+c:\workspace\project\personal\project\cube\cube\mtd\crontab.cpp(20): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(505): note: 参见“localtime”的声明
+  util.cpp
+c:\workspace\project\personal\project\cube\cube\log\util.cpp(10): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(505): note: 参见“localtime”的声明
+c:\workspace\project\personal\project\cube\cube\log\util.cpp(16): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\time.h(505): note: 参见“localtime”的声明
+c:\workspace\project\personal\project\cube\cube\log\util.cpp(45): error C4996: '_open': This function or variable may be unsafe. Consider using _sopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\corecrt_io.h(390): note: 参见“_open”的声明
+  strip.cpp
+  printer.cpp
+  logger.cpp
+  log.cpp
+  stream.cpp
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2039: “params”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\query.h(3): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2143: 语法错误: 缺少“;”(在“&”的前面)
+c:\workspace\project\personal\project\cube\cube\http\query.h(11): error C2334: “{”的前面有意外标记；跳过明显的函数体
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C2327: “cube::http::query::params”: 不是类型名称、静态或枚举数
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C2039: “params”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\query.h(3): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C3646: “_params”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\http\query.h(20): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\query.h(6): error C2789: “cube::http::query::params”: 必须初始化常量限定类型的对象
+  c:\workspace\project\personal\project\cube\cube\http\query.h(11): note: 参见“cube::http::query::params”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2039: “message”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\stream.h(6): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2061: 语法错误: 标识符“message”
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2039: “message”: 不是“cube::http”的成员
+  c:\workspace\project\personal\project\cube\cube\http\stream.h(6): note: 参见“cube::http”的声明
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2065: “message”: 未声明的标识符
+c:\workspace\project\personal\project\cube\cube\http\stream.h(46): error C2923: “std::shared_ptr”: 对于参数“_Ty”，“message”不是有效的 模板 类型变量
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): error C2065: “message”: 未声明的标识符
+c:\workspace\project\personal\project\cube\cube\http\stream.h(29): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
+  status.cpp
+c:\workspace\project\personal\project\cube\cube\http\status.h(9): error C2039: “string”: 不是“std”的成员
+  c:\workspace\project\personal\project\cube\cube\predefined c++ types (compiler internal)(208): note: 参见“std”的声明
+c:\workspace\project\personal\project\cube\cube\http\status.h(9): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\status.h(9): error C2143: 语法错误: 缺少“,”(在“&”的前面)
+c:\workspace\project\personal\project\cube\cube\http\status.h(13): error C2039: “string”: 不是“std”的成员
+  c:\workspace\project\personal\project\cube\cube\predefined c++ types (compiler internal)(208): note: 参见“std”的声明
+c:\workspace\project\personal\project\cube\cube\http\status.h(13): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\status.h(13): error C2143: 语法错误: 缺少“,”(在“&”的前面)
+c:\workspace\project\personal\project\cube\cube\http\status.h(19): error C2039: “string”: 不是“std”的成员
+  c:\workspace\project\personal\project\cube\cube\predefined c++ types (compiler internal)(208): note: 参见“std”的声明
+c:\workspace\project\personal\project\cube\cube\http\status.h(19): error C3646: “_code”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\http\status.h(19): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\status.h(21): error C2039: “string”: 不是“std”的成员
+  c:\workspace\project\personal\project\cube\cube\predefined c++ types (compiler internal)(208): note: 参见“std”的声明
+c:\workspace\project\personal\project\cube\cube\http\status.h(21): error C3646: “_reason”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\http\status.h(21): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\status.h(23): error C2039: “string”: 不是“std”的成员
+  c:\workspace\project\personal\project\cube\cube\predefined c++ types (compiler internal)(208): note: 参见“std”的声明
+c:\workspace\project\personal\project\cube\cube\http\status.h(23): error C3646: “_version”: 未知重写说明符
+c:\workspace\project\personal\project\cube\cube\http\status.h(23): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
+c:\workspace\project\personal\project\cube\cube\http\status.h(6): error C2614: “cube::http::status”: 非法的成员初始化:“_code”不是基或成员
+c:\workspace\project\personal\project\cube\cube\http\status.h(6): error C2614: “cube::http::status”: 非法的成员初始化:“_reason”不是基或成员
+c:\workspace\project\personal\project\cube\cube\http\status.h(6): error C2614: “cube::http::status”: 非法的成员初始化:“_version”不是基或成员
+c:\workspace\project\personal\project\cube\cube\http\status.h(6): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
