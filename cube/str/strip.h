@@ -1,5 +1,6 @@
 #pragma once
-#include "cube\str\def.h"
+#include <string>
+#include "cube\ns.h"
 BEGIN_CUBE_STR_NS
 static const char* SPACES = "\t\f\v\n\r\t ";
 /*

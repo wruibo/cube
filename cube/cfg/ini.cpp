@@ -1,8 +1,8 @@
 #include <fstream>
-#include "cube\str\type.h"
+#include "cube\cfg\ini.h"
+#include "cube\str\stype.h"
 #include "cube\str\cast.h"
 #include "cube\str\strip.h"
-#include "cube\cfg\ini.h"
 
 BEGIN_CUBE_CFG_NS
 void section::set_item(const std::string &key, const std::string &value) {

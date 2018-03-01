@@ -1,5 +1,7 @@
 #pragma once
-#include "cube\str\def.h"
+#include <string>
+#include "cube\ns.h"
+#include "cube\type.h"
 BEGIN_CUBE_STR_NS
 /*
 *	transfer value to hexadecimal string, e.g. 0xAB->'AB'

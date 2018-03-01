@@ -1,3 +1,4 @@
+#include <string.h>
 #include "cube\str\find.h"
 
 BEGIN_CUBE_STR_NS

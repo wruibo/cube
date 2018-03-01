@@ -1,5 +1,6 @@
 #pragma once
-#include "cube\str\def.h"
+#include <string>
+#include "cube\ns.h"
 BEGIN_CUBE_STR_NS
 /*
 *	transfer the letter in string to upper case

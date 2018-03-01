@@ -39,39 +39,6 @@
     <ClCompile Include="clt\tcp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="fd\dir.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\exp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\fd.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\file.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\part.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\path.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="fd\strip.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="file\dir.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="file\fd.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="file\file.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="file\path.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="http\cookie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -109,27 +76,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="log\printer.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="log\strip.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="log\util.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mtd\crontab.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mtd\looper.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mtd\reactor.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mtd\thread.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mtd\timer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="net\context.cpp">
@@ -183,16 +129,7 @@
     <ClCompile Include="str\split.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="str\str.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="str\strip.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="str\type.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="str\url.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="svr\http.cpp">
@@ -201,27 +138,30 @@
     <ClCompile Include="svr\tcp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util\exp.cpp">
+    <ClCompile Include="str\escape.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util\ios.cpp">
+    <ClCompile Include="str\stype.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util\mm.cpp">
+    <ClCompile Include="sys\file.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util\tm.cpp">
+    <ClCompile Include="sys\path.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="util\util.cpp">
+    <ClCompile Include="sys\time.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="str\search.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="io\stream.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="cc\def.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="cc\looper.h">
@@ -239,9 +179,6 @@
     <ClInclude Include="cc\timer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="cfg\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="cfg\ini.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -252,45 +189,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="clt\tcp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\dir.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\exp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\fd.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\file.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\part.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\path.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="fd\strip.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file\dir.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file\fd.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file\file.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="file\path.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\cookie.h">
@@ -335,9 +233,6 @@
     <ClInclude Include="http\stream.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="log\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="log\log.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -345,33 +240,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="log\printer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="log\strip.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="log\util.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\crontab.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\looper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\reactor.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\task.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\thread.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mtd\timer.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="net\context.h">
@@ -407,9 +275,6 @@
     <ClInclude Include="str\cast.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="str\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="str\find.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -431,16 +296,7 @@
     <ClInclude Include="str\split.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="str\str.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="str\strip.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="str\type.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="str\url.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="svr\def.h">
@@ -452,28 +308,43 @@
     <ClInclude Include="svr\tcp.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\def.h">
+    <ClInclude Include="type.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\exp.h">
+    <ClInclude Include="ns.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\ios.h">
+    <ClInclude Include="str\escape.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\mm.h">
+    <ClInclude Include="str\stype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\safe.h">
+    <ClInclude Include="sys\file.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\tm.h">
+    <ClInclude Include="sys\ftype.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\tsc.h">
+    <ClInclude Include="sys\path.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="util\util.h">
+    <ClInclude Include="sys\time.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="safe.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="exp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="list.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="str\search.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="io\stream.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

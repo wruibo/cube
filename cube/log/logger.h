@@ -2,6 +2,12 @@
 #include "cube\log\printer.h"
 #include <mutex>
 BEGIN_CUBE_LOG_NS
+//log level option
+enum class level { debug = 0, info = 1, warn = 2, error = 3, fatal = 4 };
+
+//log output option
+enum class output { console = 0, file = 1 };
+
 //log class
 class logger {
 public:
@@ -45,12 +51,12 @@ public:
 	*@param out: in, output method, file or console
 	*@param dir: in, log file directory
 	*@param name: in, log file name
-	*@param ct: in, log file cut method, none, size or daily
+	*@param ropt: in, log file roll method, none, size or daily
 	*@param fszlimit: in, file size limit if cut method is size cutting
 	*@return:
 	*	void
 	*/
-	void set(out out, const char *dir = ".", const char *name = "log", cut ct = cut::none, uint fszlimit = -1);
+	void set(output out, const char *dir = ".", const char *name = "log", roll ropt = roll::none, uint fszlimit = -1);
 
 private:
 	//output printer for log

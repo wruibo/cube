@@ -3,7 +3,7 @@
 */
 #pragma once
 #include <map>
-#include "cube\cfg\def.h"
+#include "cube\ns.h"
 BEGIN_CUBE_CFG_NS
 //section structure of configure file
 class section {
