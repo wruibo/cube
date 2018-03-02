@@ -1,5 +1,5 @@
-#include "cube\log\log.h"
 #include <stdarg.h>
+#include "cube\log\log.h"
 BEGIN_CUBE_LOG_NS
 logger g_logger;
 void debug(const char* format, ...) {
@@ -101,7 +101,7 @@ void set(level lvl) {
 	g_logger.set(lvl);
 }
 
-void set(out out, const char *dir, const char *name, cut ct, uint fszlimit) {
-	g_logger.set(out, dir, name, ct, fszlimit);
+void set(output out, const char *dir, const char *name, roll ropt, uint fszlimit) {
+	g_logger.set(out, dir, name, ropt, fszlimit);
 }
 END_CUBE_LOG_NS

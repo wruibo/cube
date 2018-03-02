@@ -1,5 +1,5 @@
 #pragma once
-#include "cube\cc\def.h"
+#include "cube\ns.h"
 BEGIN_CUBE_CC_NS
 //runnable task
 class task {

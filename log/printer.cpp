@@ -1,16 +1,18 @@
-#include "cube\log\util.h"
-#include "cube\log\strip.h"
-#include "cube\log\printer.h"
 #include <iostream>
+#include "cube\sys\time.h"
+#include "cube\sys\file.h"
+#include "cube\sys\path.h"
+#include "cube\str\strip.h"
+#include "cube\str\format.h"
+#include "cube\log\printer.h"
 BEGIN_CUBE_LOG_NS
 //////////////////////////////console printer//////////////////////////////
 void console_printer::print(const char *msg) {
 	std::cout << msg;
 }
 
-
 //////////////////////////////file printer//////////////////////////////
-file_printer::file_printer(const std::string &dir, const std::string &name, log::cut ct, uint fszlimit) : _dir(dir), _name(name), _cutopt(ct), _currday(0), _fszlimit(fszlimit), _currnum(0), _currfsz(fszlimit) {
+file_printer::file_printer(const std::string &dir, const std::string &name, roll ropt, uint fszlimit) : _dir(dir), _name(name), _ropt(ropt), _currday(0), _fszlimit(fszlimit), _currnum(0), _currfsz(fszlimit) {
 
 }
 
@@ -36,13 +38,13 @@ void file_printer::print(const char *msg) {
 }
 
 void file_printer::check_and_cut(int msgsz) {
-	switch (_cutopt) {
-	case log::cut::none:
+	switch (_ropt) {
+	case roll::none:
 		if (!_file.is_open()) {
 			_file.open(next_normal_file(), std::ios::out | std::ios::app);
 		}
 		break;
-	case log::cut::sized:
+	case roll::sized:
 		if (!_file.is_open()) {
 			_file.open(next_sized_file(msgsz), std::ios::out | std::ios::app);
 		} else {
@@ -52,11 +54,11 @@ void file_printer::check_and_cut(int msgsz) {
 			}
 		}
 		break;
-	case log::cut::daily:
+	case roll::daily:
 		if (!_file.is_open()) {
 			_file.open(next_daily_file(), std::ios::out | std::ios::app);
 		} else {
-			if (_currday != today()) {
+			if (_currday != sys::time::now(sys::time::timeunit::mday)) {
 				_file.close();
 				_file.open(next_daily_file(), std::ios::out | std::ios::app);
 			}
@@ -68,34 +70,34 @@ void file_printer::check_and_cut(int msgsz) {
 }
 
 std::string file_printer::next_normal_file() {
-	if (!fexist(_dir)) {
-		mkdirs(_dir);
+	if (!sys::file::exist(_dir)) {
+		sys::path::mkdirs(_dir);
 	}
 
-	return mkpath(_dir, _name);
+	return sys::path::mkpath(_dir, _name);
 }
 
 std::string file_printer::next_daily_file() {
-	if (!fexist(_dir)) {
-		mkdirs(_dir);
+	if (!sys::file::exist(_dir)) {
+		sys::path::mkdirs(_dir);
 	}
 
-	return mkpath(_dir, _name + "." + now("%Y%m%d"));
+	return sys::path::mkpath(_dir, _name + "." + sys::time::now("%Y%m%d"));
 }
 
 std::string file_printer::next_sized_file(int msgsz) {
 	//make log directory
-	if (!fexist(_dir)) {
-		mkdirs(_dir);
+	if (!sys::file::exist(_dir)) {
+		sys::path::mkdirs(_dir);
 	}
 
 	//get next sized file path
 	_currnum++;
-	std::string fpath = mkpath(_dir, format("%s.%d", _name.c_str(), _currnum));
+	std::string fpath = sys::path::mkpath(_dir, str::format("%s.%d", _name.c_str(), _currnum));
 	while (true) {
-		if (fexist(fpath)) {
+		if (sys::file::exist(fpath)) {
 			size_t sz = 0;
-			if (fsize(fpath, sz) == 0 && sz + msgsz < _fszlimit) {
+			if (sys::file::size(fpath, sz) == 0 && sz + msgsz < _fszlimit) {
 				_currfsz = sz;
 				break;
 			}
@@ -105,7 +107,7 @@ std::string file_printer::next_sized_file(int msgsz) {
 			break;
 		}
 		_currnum++;
-		fpath = mkpath(_dir, format("%s.%d", _name.c_str(), _currnum));
+		fpath = sys::path::mkpath(_dir, str::format("%s.%d", _name.c_str(), _currnum));
 	}
 
 	return fpath;

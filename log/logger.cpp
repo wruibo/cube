@@ -1,6 +1,6 @@
-#include "cube\log\logger.h"
-#include "cube\log\util.h"
 #include <stdarg.h>
+#include "cube\sys\time.h"
+#include "cube\log\logger.h"
 BEGIN_CUBE_LOG_NS
 //////////////////////////////logger class//////////////////////////////
 void logger::debug(const char* format, ...) {
@@ -110,7 +110,7 @@ void logger::print(level lvl, const char *msg) {
 	//add level and time to message
 	const int BUFSZ = 1024;
 	char buf[BUFSZ] = { 0 };
-	int pos = snprintf(buf, BUFSZ, "%s[%s]%s\n", now("[%Y%m%d][%H:%M:%S]").c_str(), LEVEL[(int)lvl], msg);
+	int pos = snprintf(buf, BUFSZ, "%s[%s]%s\n", sys::time::now("[%Y%m%d][%H:%M:%S]").c_str(), LEVEL[(int)lvl], msg);
 	if (pos > 0 && pos<BUFSZ) {
 		buf[pos] = 0;
 		msg = buf;
@@ -126,7 +126,7 @@ void logger::set(level lvl) {
 	_level = lvl;
 }
 
-void logger::set(out out, const char *dir/* = "."*/, const char *name/* = "log"*/, cut ct/* = cut::none*/, uint fszlimit/* = -1*/) {
+void logger::set(output out, const char *dir/* = "."*/, const char *name/* = "log"*/, roll ropt/* = roll::none*/, uint fszlimit/* = -1*/) {
 	std::lock_guard<std::mutex> lock(_mutex);
 	//free old printer
 	if (_printer != 0) {
@@ -135,11 +135,11 @@ void logger::set(out out, const char *dir/* = "."*/, const char *name/* = "log"*
 
 	//create new printer
 	switch (out) {
-	case out::console:
+	case output::console:
 		_printer = new console_printer();
 		break;
-	case out::file:
-		_printer = new file_printer(dir, name, ct, fszlimit);
+	case output::file:
+		_printer = new file_printer(dir, name, ropt, fszlimit);
 		break;
 	default:
 		_printer = 0;

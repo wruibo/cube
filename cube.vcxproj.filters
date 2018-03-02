@@ -33,12 +33,6 @@
     <ClCompile Include="cfg\ini.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="clt\http.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="clt\tcp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="http\cookie.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -132,12 +126,6 @@
     <ClCompile Include="str\strip.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="svr\http.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="svr\tcp.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="str\escape.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -157,6 +145,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="io\stream.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="svc\http_server.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -180,15 +171,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="cfg\ini.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="clt\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="clt\http.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="clt\tcp.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\cookie.h">
@@ -299,15 +281,6 @@
     <ClInclude Include="str\strip.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="svr\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="svr\http.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="svr\tcp.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="type.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -345,6 +318,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="io\stream.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svc\http_server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svc\tcp_server.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="svc\tcp_client.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,12 @@
 #pragma once
-#include "cube\log\def.h"
 #include <string>
 #include <fstream>
+#include "cube\type.h"
+
 BEGIN_CUBE_LOG_NS
+//roll option for file output 
+enum class roll { none = 0, sized = 1, daily = 2 };
+
 //printer class
 class printer {
 public:
@@ -18,7 +22,7 @@ public:
 //file printer class
 class file_printer : public printer {
 public:
-	file_printer(const std::string &dir, const std::string &name, log::cut ct = log::cut::none, uint fszlimit = -1);
+	file_printer(const std::string &dir, const std::string &name, roll ropt = roll::none, uint fszlimit = -1);
 	virtual ~file_printer();
 
 	void print(const char *msg);
@@ -44,8 +48,8 @@ private:
 	std::string _dir;
 	//file name prefix
 	std::string _name;
-	//cut option
-	log::cut _cutopt;
+	//roll option
+	roll _ropt;
 
 	//current day for daily cutting file
 	int _currday;

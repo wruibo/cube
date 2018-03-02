@@ -1,6 +1,7 @@
 #pragma once
-#include "cube\str\def.h"
+#include <string>
 #include <vector>
+#include "cube\ns.h"
 BEGIN_CUBE_STR_NS
 /*
 *	split a string by character/characters
