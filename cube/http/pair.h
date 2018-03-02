@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "cube\http\def.h"
+#include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 //name value pair
 class pair {

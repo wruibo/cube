@@ -150,6 +150,12 @@
     <ClCompile Include="svc\http_server.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="http\buffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\packer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">
@@ -176,9 +182,6 @@
     <ClInclude Include="http\cookie.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="http\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="http\entity.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -201,9 +204,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\response.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="http\safety.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\session.h">
@@ -327,6 +327,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="svc\tcp_client.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\packer.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

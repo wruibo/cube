@@ -1,6 +1,8 @@
 #pragma once
-#include "cube\http\def.h"
 #include <map>
+#include <string>
+#include <time.h>
+#include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 //http cookie class
 class cookie {

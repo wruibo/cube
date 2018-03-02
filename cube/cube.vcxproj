@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="http\buffer.cpp" />
     <ClCompile Include="cc\crontab.cpp" />
     <ClCompile Include="cc\looper.cpp" />
     <ClCompile Include="cc\reactor.cpp" />
     <ClCompile Include="cc\thread.cpp" />
     <ClCompile Include="cc\timer.cpp" />
     <ClCompile Include="cfg\ini.cpp" />
+    <ClCompile Include="http\packer.cpp" />
     <ClCompile Include="sys\file.cpp" />
     <ClCompile Include="sys\path.cpp" />
     <ClCompile Include="http\cookie.cpp" />
@@ -66,6 +68,7 @@
     <ClCompile Include="str\search.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="http\buffer.h" />
     <ClInclude Include="cc\crontab.h" />
     <ClInclude Include="cc\looper.h" />
     <ClInclude Include="cc\reactor.h" />
@@ -73,12 +76,12 @@
     <ClInclude Include="cc\thread.h" />
     <ClInclude Include="cc\timer.h" />
     <ClInclude Include="cfg\ini.h" />
+    <ClInclude Include="http\packer.h" />
     <ClInclude Include="svc\tcp_client.h" />
     <ClInclude Include="sys\file.h" />
     <ClInclude Include="sys\ftype.h" />
     <ClInclude Include="sys\path.h" />
     <ClInclude Include="http\cookie.h" />
-    <ClInclude Include="http\def.h" />
     <ClInclude Include="http\entity.h" />
     <ClInclude Include="http\header.h" />
     <ClInclude Include="http\pair.h" />
@@ -87,7 +90,6 @@
     <ClInclude Include="http\query.h" />
     <ClInclude Include="http\request.h" />
     <ClInclude Include="http\response.h" />
-    <ClInclude Include="http\safety.h" />
     <ClInclude Include="http\session.h" />
     <ClInclude Include="http\status.h" />
     <ClInclude Include="http\stream.h" />

@@ -1,9 +1,9 @@
 #pragma once
+#include <mutex>
+#include <memory>
 #include "cube\http\query.h"
 #include "cube\http\header.h"
 #include "cube\http\entity.h"
-#include <mutex>
-#include <memory>
 BEGIN_CUBE_HTTP_NS
 //http request class
 class request {

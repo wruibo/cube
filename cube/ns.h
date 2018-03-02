@@ -8,6 +8,9 @@
 #define BEGIN_CUBE_CFG_NS namespace cube { namespace cfg{
 #define END_CUBE_CFG_NS }}
 
+#define BEGIN_CUBE_HTTP_NS namespace cube { namespace http {
+#define END_CUBE_HTTP_NS }}
+
 #define BEGIN_CUBE_IO_NS namespace cube { namespace io{
 #define END_CUBE_IO_NS }}
 

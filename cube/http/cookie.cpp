@@ -1,5 +1,4 @@
 #include "cube\http\cookie.h"
-#include <time.h>
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////cookie class/////////////////////////////////////////
 std::string cookie::expires() const {

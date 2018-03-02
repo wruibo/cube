@@ -1,7 +1,8 @@
 #pragma once
-#include "cube\http\def.h"
 #include <map>
 #include <mutex>
+#include <string>
+#include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 //http session class
 class session {

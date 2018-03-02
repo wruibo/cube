@@ -1,10 +1,16 @@
 #pragma once
-#include "cube\http\def.h"
+#include <string>
+#include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 class status {
 public:
-	status() : _code(""), _reason(""), _version("1.1") {}
+	status() : _version("1.1"), _code(""), _reason("") {}
+	status(const std::string &version, const std::string &code, const std::string &reason) : _version(version), _code(code), _reason(reason) {}
 	virtual ~status() {}
+
+	void version(const std::string &version) {
+		_version = version;
+	}
 
 	void code(const std::string &code) {
 		_code = code;

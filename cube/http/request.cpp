@@ -1,3 +1,4 @@
+#include "cube\safe.h"
 #include "cube\str\part.h"
 #include "cube\str\case.h"
 #include "cube\str\format.h"

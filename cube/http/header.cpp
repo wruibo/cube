@@ -1,8 +1,8 @@
-#include "cube\http\header.h"
+#include <algorithm>
 #include "cube\str\case.h"
 #include "cube\str\part.h"
 #include "cube\str\format.h"
-#include <algorithm>
+#include "cube\http\header.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////element class///////////////////////////////////////
 

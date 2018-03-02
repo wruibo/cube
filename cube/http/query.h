@@ -1,5 +1,6 @@
 #pragma once
-#include "cube\http\def.h"
+#include <string>
+#include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 class query {
 public:
