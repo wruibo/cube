@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="http\handler.cpp" />
     <ClCompile Include="http\buffer.cpp" />
     <ClCompile Include="cc\crontab.cpp" />
     <ClCompile Include="cc\looper.cpp" />
@@ -68,6 +69,7 @@
     <ClCompile Include="str\search.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="http\handler.h" />
     <ClInclude Include="http\buffer.h" />
     <ClInclude Include="cc\crontab.h" />
     <ClInclude Include="cc\looper.h" />

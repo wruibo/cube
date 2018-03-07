@@ -156,6 +156,9 @@
     <ClCompile Include="http\packer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="http\handler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">
@@ -333,6 +336,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\packer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\handler.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

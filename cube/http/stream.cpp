@@ -2,39 +2,47 @@
 #include "cube\http\stream.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////data stream class/////////////////////////////////
-int data_stream::read(char *data, int sz) {
-	//no more data for reading
-	if (endr())
-		return 0;
-	
+int data_stream::open() {
+	return 0; //do nothing
+}
+
+size_t data_stream::read(char *data, size_t sz) {
 	//current data size
-	int len = (int)_data.length();
+	size_t csz = _data.length();
+
+	//no more data for reading
+	if (!(_rpos < csz))
+		return 0;
+
 	//get read size
-	int rsz = len - _rpos > sz ? sz : len - _rpos;
+	size_t rsz = csz - _rpos > sz ? sz : csz - _rpos;
 	//copy to destination data buffer
-	memcpy(data, _data.c_str()+_rpos, rsz);
+	memcpy(data, _data.c_str()+_rpos, (::size_t)rsz);
 	//reset current read pos
 	_rpos += rsz;
 	//return read size
 	return rsz;
 }
 
-int data_stream::write(const char *data, int sz) {
-	if (endw())
-		return 0;
+size_t data_stream::write(const char *data, size_t sz) {
 	//current stream size
-	int size = (int)_data.length();
-	//left space for writting
-	int left = _maxsz - size;
-	//get write size
-	int wsz = sz > left ? left : sz;
+	size_t csz = _data.length();
 
-	if (_wpos == size) {
+	//no more space for writting
+	if (!(_wpos < csz))
+		return 0;
+
+	//left space for writting
+	size_t left = _msz - _wpos;
+	//get write size
+	size_t wsz = sz > left ? left : sz;
+
+	if (_wpos == csz) {
 		//append data
-		_data.append(data, wsz);
+		_data.append(data, (::size_t)wsz);
 	} else {
 		//replace data
-		_data.replace(_wpos, wsz, data, wsz);
+		_data.replace((::size_t)_wpos, (::size_t)wsz, data, (::size_t)wsz);
 	}
 
 	//reset the write position
@@ -43,39 +51,65 @@ int data_stream::write(const char *data, int sz) {
 	return wsz;
 }
 
-int data_stream::seekr(int pos) {
-	if (pos < _data.length()) {
-		_rpos = pos;
-		return 0;
+size_t data_stream::seekr(size_t pos) {
+	//current stream data size
+	size_t csz = _data.length();
+	//seek read position to stream end when specified position if more thran data size
+	if (!(pos < _data.length())) {
+		pos = csz;
 	}
-	return -1;
+	//set current read position
+	_rpos = pos;
+	return _rpos;
 }
 
-int data_stream::seekw(int pos) {
-	if (pos < _maxsz) {
-		//add blank data
-		if (pos > _data.length()) {
-			int blanksz = pos - _data.length();
-			_data.append(blanksz, 0);
-		}
+size_t data_stream::seekw(size_t pos) {
+	//current stream data size
+	size_t csz = _data.length();
 
-		//set write position
-		_wpos = pos;
-		return 0;
+	//set too large pos to max data size
+	if (pos > _msz) {
+		pos = _msz;
 	}
 
-	return -1;
+	//add blank character
+	if (pos > csz) {
+		//add blank data
+		size_t blanksz = pos - csz;
+		_data.append((::size_t)blanksz, 0);
+	}
+
+	//set write position
+	_wpos = pos;
+
+	return _wpos;
+}
+
+size_t data_stream::tellr() const {
+	return _rpos;
+}
+
+size_t data_stream::tellw() const {
+	return _wpos;
 }
 
 bool data_stream::endr() const {
-	return !(_rpos < (int)_data.length());
+	return !(_rpos < _data.length());
 }
 
 bool data_stream::endw() const {
-	return !(_data.length() < _maxsz);
+	return _wpos == _data.length();
 }
 
-int data_stream::size() {
+bool data_stream::full() const {
+	return !(_data.length() < _msz);
+}
+
+bool data_stream::empty() const {
+	return _data.length() == 0;
+}
+
+size_t data_stream::size() const {
 	return _data.length();
 }
 
@@ -83,47 +117,158 @@ std::string data_stream::data() {
 	return _data;
 }
 
+void data_stream::flush() {
+	;//do nothing
+}
+
+void data_stream::close() {
+	;//do nothing
+}
+
+
 //////////////////////////////////////////file stream class//////////////////////////////////////
-int file_stream::read(char *data, int sz) {
+int file_stream::open() {
+	//file must be opened after construct
+	if (!_file.is_open()) {
+		return -1;
+	}
+	
+	//get current file size
+	_csz = _size();
+	
+	//set current write position
+	_wpos = _csz;
+
+	return 0;
+}
+
+size_t file_stream::read(char *data, size_t sz) {
+	//no more data for reading
+	if (!(_rpos < _csz))
+		return 0;
+
+	//read data
 	_file.read(data, sz);
-	return (int)_file.gcount();
+	//get read size
+	size_t rsz = (size_t)_file.gcount();
+	//set read position
+	_rpos += rsz;
+
+	return rsz;
 }
 
-int file_stream::write(const char *data, int sz) {
-	_file.write(data, sz);
-	return sz;
+size_t file_stream::write(const char *data, size_t sz) {
+	//no more space for writting
+	if (!(_wpos < _msz))
+		return 0;
+
+	//left space for writting
+	size_t left = _msz - _wpos;
+	//get write size
+	size_t wsz = sz > left ? left : sz;
+
+	//write data
+	_file.write(data, wsz);
+	//set write position
+	_wpos += wsz;
+
+	//set current file size
+	if (_wpos > _csz)
+		_csz = _wpos;
+
+	return wsz;
 }
 
-int file_stream::seekr(int pos) {
+size_t file_stream::seekr(size_t pos) {
+	//seek to file end if pos > current file size
+	if (!(pos < _csz)) {
+		pos = _csz;
+	}
+		
+	//seek to specified read position
 	_file.seekg(pos);
-	return 0;
+
+	//reset the read position
+	_rpos = pos;
+
+	return _rpos;
 }
 
-int file_stream::seekw(int pos) {
-	_file.seekp(pos);
-	return 0;
+size_t file_stream::seekw(size_t pos) {
+	//set too large pos to max data size
+	if (pos > _msz) {
+		pos = _msz;
+	}
+
+	//add blank character
+	if (pos > _csz) {
+		//seek write pos to file end
+		if (_wpos != _csz) {
+			_file.seekp(_csz);
+		}
+
+		//blank block data
+		const int BLOCKSZ = 16 * 1024;
+		char blockdata[BLOCKSZ] = { 0 };
+
+		//blank data size need to add
+		size_t blanksz = pos - _csz;
+		size_t blocks = blanksz / BLOCKSZ;
+		//write blank data to file
+		for (size_t i = 0; i < blocks; i++) {
+			_file.write(blockdata, BLOCKSZ);
+		}
+
+		//write left blank data
+		size_t leftsz = blanksz % BLOCKSZ;
+		if (leftsz > 0) {
+			_file.write(blockdata, leftsz);
+		}
+	} else {
+		//seek to specified posotion
+		_file.seekp(pos);
+	}
+
+	//set write position
+	_wpos = pos;
+	
+	return _wpos;
+}
+
+size_t file_stream::tellr() const {
+	return _rpos;
+}
+
+size_t file_stream::tellw() const {
+	return _wpos;
 }
 
 bool file_stream::endw() const {
-	return false;
+	return _wpos == _csz;
 }
 
 bool file_stream::endr() const {
-	return _file.eof();
+	return _rpos == _csz;
 }
 
-int file_stream::size() {
-	//save current get position
-	std::streampos gpos = _file.tellg();
+bool file_stream::full() const {
+	return _wpos == _msz;
+}
 
-	//get file size
-	_file.seekg(0, std::ios::end);
-	std::streampos sz = _file.tellg();
+bool file_stream::empty() const {
+	return _csz == 0;
+}
 
-	//restore get position
-	_file.seekg(gpos, std::ios::beg);
+size_t file_stream::size() const {
+	return _csz;
+}
 
-	return (int)sz;
+void file_stream::flush() {
+	_file.flush();
+}
+
+void file_stream::close() {
+	_file.close();
 }
 
 std::string file_stream::data() {
@@ -140,7 +285,7 @@ std::string file_stream::data() {
 	char buf[BUFSZ] = { 0 };
 	while (!_file.eof()) {
 		_file.read(buf, BUFSZ);
-		data.append(buf, (size_t)_file.gcount());
+		data.append(buf, (::size_t)_file.gcount());
 	}
 
 	//reset get position
@@ -149,148 +294,18 @@ std::string file_stream::data() {
 	//return content read
 	return data;
 }
-////////////////////////crlf stream class///////////////////////
-int crlf_stream::read(char *data, int sz) {
-	//no more data for reading
-	if (endr())
-		return 0;
 
-	//current data size
-	int len = (int)_data.length();
-	//get read size
-	int rsz = len - _rpos > sz ? sz : len - _rpos;
-	//copy to destination data buffer
-	memcpy(data, _data.c_str() + _rpos, rsz);
-	//reset current read pos
-	_rpos += rsz;
-	//return read size
-	return rsz;
+size_t file_stream::_size() {
+	//save current get position
+	std::streampos gpos = _file.tellg();
+
+	//get file size
+	_file.seekg(0, std::ios::end);
+	size_t sz = (size_t)_file.tellg();
+
+	//restore get position
+	_file.seekg(gpos, std::ios::beg);
+
+	return sz;
 }
-
-int crlf_stream::write(const char *data, int sz) {
-	if (endw())
-		return 0;
-	//current stream size
-	int size = (int)_data.length();
-	//left space for writting
-	int left = _maxsz - size;
-	//get write size
-	int wsz = sz > left ? left : sz;
-
-	if (_wpos == size) {
-		//append data
-		_data.append(data, wsz);
-	} else {
-		//replace data
-		_data.replace(_wpos, wsz, data, wsz);
-	}
-
-	//reset the write position
-	_wpos += wsz;
-
-	return wsz;
-}
-
-int crlf_stream::seekr(int pos) {
-	if (pos < _data.length()) {
-		_rpos = pos;
-		return 0;
-	}
-	return -1;
-}
-
-int crlf_stream::seekw(int pos) {
-	if (pos < _maxsz) {
-		//add blank data
-		if (pos > _data.length()) {
-			int blanksz = pos - _data.length();
-			_data.append(blanksz, 0);
-		}
-
-		//set write position
-		_wpos = pos;
-		return 0;
-	}
-
-	return -1;
-}
-
-bool crlf_stream::endr() const {
-	return !(_rpos < (int)_data.length());
-}
-
-bool crlf_stream::endw() const {
-	return !(_data.length() < _maxsz);
-}
-
-int crlf_stream::size() {
-	return _data.length();
-}
-
-std::string crlf_stream::data() {
-	return _data;
-}
-
-////////////////////////http stream class///////////////////////
-std::streamsize httpstream::read(char *data, std::streamsize sz) {
-	return 0;
-}
-
-std::streamsize httpstream::write(const char *data, std::streamsize sz) {
-	std::streamsize szw = 0;
-
-	//create head stream
-	if (_head_stream == nullptr) {
-		_head_stream = std::shared_ptr<std::iostream>(new std::stringstream());
-	}
-
-	//process head lines
-	while (!_message->has_head_transfered() && szw < sz) {
-		std::streamsize szl = _crlfbuffer.put(data + szw, sz - szw);
-		if (_crlfbuffer.full()) {
-			//set new head line
-			_message->set_head_line(_crlfbuffer.data());
-
-			//write head stream data
-			_head_stream->write(data + szw, szl);
-
-			//clear buffer
-			_crlfbuffer.clear();
-
-			//create body entity stream
-			if (_message->has_head_transfered()) {
-				//get body output stream
-				_body_stream = _message->get_body_stream();
-			}
-		}
-		//add new write size
-		szw += szl;
-	}
-
-	//process body data
-	if (_body_stream != nullptr) {
-		if (szw < sz) {
-			_body_stream->write(data + szw, sz - szw);
-
-			std::streamsize szb = sz - szw;
-			_message->set_body_transfered(szb);
-
-			szw += szb;
-		} else {
-			//body data hash transferd
-			_message->set_body_transfered(0);
-		}
-	}
-
-	return szw;
-}
-
-void httpstream::make() {
-
-}
-
-bool httpstream::full() const {
-	return _message->has_head_transfered() && _message->has_body_transfered();
-}
-
 END_CUBE_HTTP_NS
