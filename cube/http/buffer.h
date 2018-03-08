@@ -60,9 +60,10 @@ public:
 	
 	int size() const;
 
-	const char *data() const;
-
 	void clear();
+
+	const char *data() const;
+	std::string line() const;
 private:
 	//carriage line data, not include 
 	std::string _data;

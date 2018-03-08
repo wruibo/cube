@@ -1,5 +1,6 @@
 #pragma once
-#include "cube\net\def.h"
+#include "cube\ns.h"
+#include <WinSock2.h>
 BEGIN_CUBE_NET_NS
 //iocp operation
 typedef enum io_opt { IO_SEND, IO_RECV } io_opt;

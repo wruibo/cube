@@ -1,7 +1,7 @@
-#include "cube\net\error.h"
 #include <Windows.h>
+#include "cube\sys\error.h"
 
-BEGIN_CUBE_NET_NS
+BEGIN_CUBE_SYS_NS
 int last_error_code() {
 	return ::GetLastError();
 }
@@ -20,4 +20,4 @@ std::string last_error(int error_code) {
 
 	return error;
 }
-END_CUBE_NET_NS
+END_CUBE_SYS_NS

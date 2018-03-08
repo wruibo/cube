@@ -1,6 +1,7 @@
 #pragma once
-#include "cube\net\def.h"
-#include <Windows.h>
+#include <WinSock2.h>
+#include "cube\exp.h"
+#include "cube\type.h"
 BEGIN_CUBE_NET_NS
 //result for get completion queued status
 class iores {

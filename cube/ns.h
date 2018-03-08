@@ -17,11 +17,17 @@
 #define BEGIN_CUBE_LOG_NS namespace cube { namespace log{
 #define END_CUBE_LOG_NS }}
 
+#define BEGIN_CUBE_NET_NS namespace cube { namespace net{
+#define END_CUBE_NET_NS }}
+
 #define BEGIN_CUBE_STR_NS namespace cube { namespace str{
 #define END_CUBE_STR_NS }}
 
 #define BEGIN_CUBE_SVC_NS namespace cube { namespace svc{
 #define END_CUBE_SVC_NS }}
+
+#define BEGIN_CUBE_SYS_NS namespace cube { namespace sys{
+#define END_CUBE_SYS_NS }}
 
 #define BEGIN_CUBE_SYS_FILE_NS namespace cube { namespace sys { namespace file {
 #define END_CUBE_SYS_FILE_NS }}}

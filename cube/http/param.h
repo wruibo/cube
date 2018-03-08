@@ -9,6 +9,9 @@ public:
 	param() {}
 	param(const std::string &name, const std::string &value) : pair(name, value) {}
 	virtual ~param() {}
+	
+	std::string pack() const;
+	int parse(const std::string &str);
 
 public:
 	inline bool operator==(const std::string &name) const {
@@ -22,6 +25,10 @@ public:
 	params() {}
 	virtual ~params() {}
 
+	std::string pack() const;
+	int parse(const std::string &str);
+
+public:
 	bool has(const std::string &name) const {
 		return std::find(_params.begin(), _params.end(), name) != _params.end();
 	}

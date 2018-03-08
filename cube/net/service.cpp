@@ -1,4 +1,4 @@
-#include "cube\net\error.h"
+#include "cube\sys\error.h"
 #include "cube\net\service.h"
 BEGIN_CUBE_NET_NS
 ///////////////////////////////////////////////////////////service class//////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ void service::run() {
 		else {
 			if (res.error != WAIT_TIMEOUT) {
 				//fatal error with iocp
-				throw efatal(last_error(res.error).c_str());
+				throw efatal(sys::last_error(res.error).c_str());
 			}
 		}
 	}

@@ -1,9 +1,9 @@
 #pragma once
-#include "cube\cc\looper.h"
-#include "cube\net\iocp.h"
-#include "cube\net\system.h"
-#include "cube\net\session.h"
 #include <map>
+#include "cube\cc\looper.h"
+#include "cube\sys\cpu.h"
+#include "cube\net\iocp.h"
+#include "cube\net\session.h"
 BEGIN_CUBE_NET_NS
 //iocp service class
 class service : public cc::task {
@@ -28,8 +28,8 @@ public:
 	*@return:
 	*	0 for success, otherwise throw exceptions
 	*/
-	int start(int workers = get_cpu_cores());
-	int start(void *arg, int workers = get_cpu_cores());
+	int start(int workers = sys::get_cpu_cores());
+	int start(void *arg, int workers = sys::get_cpu_cores());
 
 	/*
 	*	dispatch a new session to iocp service

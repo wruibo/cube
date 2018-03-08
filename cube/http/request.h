@@ -4,24 +4,23 @@
 #include "cube\http\query.h"
 #include "cube\http\header.h"
 #include "cube\http\entity.h"
+#include "cube\http\message.h"
 BEGIN_CUBE_HTTP_NS
 //http request class
-class request {
+class request : public message {
 public:
 	request() {}
 	virtual ~request() {}
 
-	const http::query &query() const { 
-		return _query; 
-	}
+	bool has_entity_done() const;
+	int put_start_line(const char *data, int sz);
+	int put_header_line(const char *data, int sz);
+	int put_entity_data(const char *data, int sz);
 
-	const http::header &header() const {
-		return _header;
-	}
-
-	const http::entity &entity() const {
-		return _entity; 
-	}
+public:
+	const http::query &query() const;
+	const http::header &header() const;
+	const http::entity &entity() const;
 
 private:
 	//http request query

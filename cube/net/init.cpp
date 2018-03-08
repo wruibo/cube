@@ -1,5 +1,5 @@
 #include "cube\net\init.h"
-#include "cube\net\error.h"
+#include "cube\sys\error.h"
 #include <WinSock2.h>
 BEGIN_CUBE_NET_NS
 //for initialize the windows socket environment
@@ -13,7 +13,7 @@ init::init() {
 
 	int err = WSAStartup(wsaversion, &wsadata);
 	if (err != 0) { //startup windows socket environment failed.
-		throw std::exception(last_error().c_str());
+		throw std::exception(sys::last_error().c_str());
 	}
 }
 

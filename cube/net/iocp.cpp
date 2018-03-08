@@ -1,18 +1,18 @@
+#include "cube\sys\cpu.h"
 #include "cube\net\iocp.h"
-#include "cube\net\error.h"
-#include "cube\net\system.h"
+#include "cube\sys\error.h"
 BEGIN_CUBE_NET_NS
 void iocp::open() {
 	//create io complete port
-	_iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, get_cpu_cores());
+	_iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, sys::get_cpu_cores());
 	if (_iocp == NULL) {
-		throw last_error();
+		throw sys::last_error();
 	}
 }
 
 void iocp::bind(HANDLE handle, ULONG_PTR key) {
 	if (CreateIoCompletionPort(handle, _iocp, key, 0) == NULL) {
-		throw efatal(last_error().c_str());
+		throw efatal(sys::last_error().c_str());
 	}
 }
 

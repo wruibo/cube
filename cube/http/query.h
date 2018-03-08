@@ -7,11 +7,14 @@ public:
 	query() {}
 	virtual ~query() {}
 
+	std::string pack() const;
+	int parse(const std::string &str);
+
+public:
 	const std::string &method() const { return _method; }
 	const std::string &path() const { return _path; }
 	const http::params &params() const { return _params; }
 	const std::string &version() const { return _version; }
-
 private:
 	//request method
 	std::string _method;

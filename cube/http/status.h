@@ -20,6 +20,9 @@ public:
 		_reason = reason;
 	}
 
+public:
+
+
 private:
 	//response code
 	std::string _code;

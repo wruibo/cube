@@ -2,12 +2,16 @@
 *	sa - socket api module
 */
 #pragma once
-#include "cube\net\def.h"
 #include <list>
 #include <WinSock2.h>
+#include "cube\type.h"
+
+//socket handle
+#ifndef socket_t
+#define socket_t uint
+#endif // !socket_t
 
 BEGIN_CUBE_NET_NS
-
 //socket address
 class saddr {
 public:

@@ -75,9 +75,6 @@
     <ClCompile Include="net\context.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="net\error.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="net\init.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -91,9 +88,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="net\socket.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="net\system.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="str\case.cpp">
@@ -144,9 +138,6 @@
     <ClCompile Include="str\search.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="io\stream.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="svc\http_server.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -157,6 +148,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="http\handler.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\message.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\cpu.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sys\error.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -230,12 +230,6 @@
     <ClInclude Include="net\context.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="net\def.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="net\error.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="net\init.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -249,9 +243,6 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="net\socket.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="net\system.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="str\case.h">
@@ -320,9 +311,6 @@
     <ClInclude Include="str\search.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="io\stream.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="svc\http_server.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -339,6 +327,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\handler.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\message.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\cpu.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sys\error.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
