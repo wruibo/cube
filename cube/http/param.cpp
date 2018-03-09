@@ -13,14 +13,15 @@ std::string param::pack() const {
 
 int param::parse(const std::string &str) {
 	std::size_t sep = str.find('=');
-	if (sep != std::string::npos) {
-		name(cube::str::unescape(str.substr(0, sep)));
-		value(cube::str::unescape(str.substr(sep + 1)));
-		return 0;
-	} else {
+	if (sep == std::string::npos) {
 		log::error("params: %s, invalid param", str.c_str());
 		return -1;
 	}
+
+	name(cube::str::unescape(str.substr(0, sep)));
+	value(cube::str::unescape(str.substr(sep + 1)));
+
+	return 0;
 }
 
 std::string params::pack() const {
@@ -48,17 +49,43 @@ int params::parse(const std::string &str) {
 
 	//parse key and value of each param
 	for (std::size_t i = 0; i < items.size(); i++) {
-		std::size_t sep = items[i].find('=');
-		if (sep != std::string::npos) {
-			std::string key = str::unescape(items[i].substr(0, sep));
-			std::string val = str::unescape(items[i].substr(sep + 1));
-			_params[key].push_back(val);
-		} else {
-			cube::safe_assign<std::string>(err, str::format("params: %s, invalid param", items[i].c_str()));
+		param param;
+		if(param.parse(items[i]) != 0)
 			return -1;
-		}
+		_params.push_back(param);
 	}
 
 	return 0;
+}
+
+bool params::empty() const {
+	return _params.empty();
+}
+
+bool params::has(const std::string &name) const {
+	return std::find(_params.begin(), _params.end(), name) != _params.end();
+}
+
+void params::add(const std::string &name, const std::string &value) {
+	_params.push_back(param(name, value));
+}
+
+std::string params::get(const std::string &name) const {
+	return get(name, "");
+}
+
+std::string params::get(const std::string &name, const char *default) const {
+	std::vector<param>::const_iterator citer = std::find(_params.begin(), _params.end(), name);
+	if (citer != _params.end())
+		return (*citer).value();
+	return default;
+}
+
+void params::gets(const std::string &name, std::vector<std::string> &values) const {
+	for (::size_t i = 0; i < _params.size(); i++) {
+		if (_params[i].name() == name) {
+			values.push_back(_params[i].value());
+		}
+	}
 }
 END_CUBE_HTTP_NS

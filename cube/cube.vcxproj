@@ -29,6 +29,7 @@
     <ClCompile Include="cfg\ini.cpp" />
     <ClCompile Include="http\packer.cpp" />
     <ClCompile Include="http\message.cpp" />
+    <ClCompile Include="http\param.cpp" />
     <ClCompile Include="sys\cpu.cpp" />
     <ClCompile Include="sys\file.cpp" />
     <ClCompile Include="sys\path.cpp" />

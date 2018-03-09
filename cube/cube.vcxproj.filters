@@ -159,6 +159,9 @@
     <ClCompile Include="sys\error.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="http\param.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">

@@ -6,7 +6,12 @@ std::string query::pack() const {
 	const int BUFSZ = 4096;
 	char data[BUFSZ] = { 0 };
 
-	int sz = snprintf(data, BUFSZ, "%s %s HTTP/%s\r\n", _method.c_str(), _uri.pack().c_str(), _version.c_str());
+	int sz = 0;
+	if(_params.empty())
+		sz = snprintf(data, BUFSZ, "%s %s HTTP/%s\r\n", _method.c_str(), _path.c_str(), _version.c_str());
+	else
+		sz = snprintf(data, BUFSZ, "%s %s?%s HTTP/%s\r\n", _method.c_str(), _path.c_str(), _params.pack().c_str(), _version.c_str());
+
 	return std::string(data, sz);
 }
 
@@ -22,13 +27,23 @@ int query::parse(const std::string &str) {
 	_method = items[0];
 
 	//parse query
-	if (_uri.parse(items[1].c_str(), items[1].length(), err) != 0)
-		return -1;
+	::size_t pos = items[1].find("?");
+	if (pos == std::string::npos)
+		_path = items[1];
+	else {
+		_path = items[1].substr(0, pos);
+		if(_params.parse(items[1].substr(pos + 1)) != 0)
+			return -1;
+	}
 
 	//parse protocol & version
-	if (_version.parse(items[2].c_str(), items[2].length(), err) != 0)
+	pos = items[2].find('/');
+	if (pos == std::string::npos) {
+		log::error("http version: %s, invalid http version", items[2].c_str());
 		return -1;
-
+	}
+	_version = items[2].substr(pos + 1);
+	
 	return 0;
 }
 END_CUBE_HTTP_NS

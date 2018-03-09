@@ -29,32 +29,13 @@ public:
 	int parse(const std::string &str);
 
 public:
-	bool has(const std::string &name) const {
-		return std::find(_params.begin(), _params.end(), name) != _params.end();
-	}
+	bool empty() const;
+	bool has(const std::string &name) const;
+	void add(const std::string &name, const std::string &value);
 
-	void add(const std::string &name, const std::string &value) { 
-		_params.push_back(param(name, value));
-	}
-
-	std::string get(const std::string &name) const {
-		return get(name, "");
-	}
-
-	std::string get(const std::string &name, const char *default) const {
-		std::vector<param>::const_iterator citer = std::find(_params.begin(), _params.end(), name);
-		if (citer != _params.end())
-			return (*citer).value();
-		return default;
-	}
-
-	void gets(const std::string &name, std::vector<std::string> &values) const {
-		for (size_t i = 0; i < _params.size(); i++) {
-			if (_params[i].name() == name) {
-				values.push_back(_params[i].value());
-			}
-		}
-	}
+	std::string get(const std::string &name) const;
+	std::string get(const std::string &name, const char *default) const;
+	void gets(const std::string &name, std::vector<std::string> &values) const;
 
 private:
 	std::vector<param> _params;
