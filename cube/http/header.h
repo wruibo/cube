@@ -18,27 +18,31 @@ private:
 };
 
 //header field
-class field : public pair {
+class header : public pair {
 public:
-	field() {}
-	field(const std::string &name, const std::string &value) : pair(name, value) {}
-	virtual ~field() {}
+	header() {}
+	header(const std::string &name, const std::string &value) : pair(name, value) {}
+	virtual ~header() {}
 
 public:
-	bool operator==(const field &field) const;
+	bool operator==(const header &header) const;
 	bool operator==(const std::string &name) const;
 };
 
 //http header
-class header {
+class headers {
 public:
-	header() {}
-	virtual ~header() {}
+	headers() {}
+	virtual ~headers() {}
 
+	std::string get(const std::string &name) const;
+	std::string get(const std::string &name, const char *default) const;
+	std::vector<std::string> gets(const std::string &name) const;
+
+	int add(const std::string &data);
 	void add(const std::string &name, const std::string &value);
 	void set(const std::string &name, const std::string &value);
-
 private:
-	std::vector<field> _fields;
+	std::vector<header> _headers;
 };
 END_CUBE_HTTP_NS

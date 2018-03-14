@@ -1,27 +1,59 @@
+#include "cube\log\log.h"
+#include "cube\str\stype.h"
+#include "cube\http\config.h"
 #include "cube\http\entity.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////entity class/////////////////////////////////////////
-entity *entity::create(const headers *headers) {
-	std::string type =	headers->get("content-type").value();
-	if(type)
+int entity::set_meta(const headers &headers) {
+	//set content type
+	_type = headers.get("content-type");
+
+	//set content length
+	std::string strlen = headers.get("content-length");
+	if (!strlen.empty()) {
+		if (!str::isdigit(strlen.c_str())) {
+			log::error("invalid content length: %s", strlen.c_str());
+			return -1;
+		}
+		_length = atoi(strlen.c_str());
+		if (_length < 0 || _length > config::max_entity_length) {
+			log::error("too large content length: %d", _length);
+			return -1;
+		}
+	}
+
+	//set content language
+	_language = headers.get("content-language");
+
+	//set content encoding
+	_encoding = headers.get("content-encoding");
+
+	//set content range
+	_range = headers.get("content-range");
+
+	//set content expires
+	_expires = headers.get("expires");
+
+	return 0;
 }
 
-bool entity::has_transfered() const {
-	return _size == _transfered;
+int entity::add_data(const char *data, int sz) {
+	if (_stream.size() > config::max_entity_length)
+		return -1;
+
+	return (int)_stream.write(data, sz);
 }
 
-void entity::set_transfered(std::streamsize sz) {
-	if (sz == 0) {
-		//transfer completed
-		_size = _transfered;
-	} else {
-		//add new transfered size
-		_transfered += sz;
-	}	
+int entity::end_data() {
+	if (_stream.size() < _length)
+		return -1; //data not completed
+	
+	_length = (int)_stream.size();
+	return 0;
 }
 
-std::streamsize entity::get_size() const {
-	return _size;
+bool entity::has_done() const {
+	return _length == (int)_stream.size();
 }
 
 END_CUBE_HTTP_NS

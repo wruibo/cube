@@ -6,27 +6,35 @@
 BEGIN_CUBE_HTTP_NS
 
 bool request::has_entity_done() const {
-	return false;
+	return _entity.has_done();
 }
 
-int request::put_start_line(const char *data, int sz) {
-	return 0;
+int request::set_start_line(const std::string &data) {
+	return _query.parse(data);
 }
 
-int request::put_header_line(const char *data, int sz) {
-	return 0;
+int request::add_header_line(const std::string &data) {
+	return _headers.add(data);
 }
 
-int request::put_entity_data(const char *data, int sz) {
-	return 0;
+int request::end_header_data() {
+	return _entity.set_meta(_headers);
+}
+
+int request::add_entity_data(const char *data, int sz) {
+	return _entity.add_data(data, sz);
+}
+
+int request::end_entity_data() {
+	return _entity.end_data();
 }
 
 const http::query &request::query() const {
 	return _query;
 }
 
-const http::header &request::header() const {
-	return _header;
+const http::headers &request::headers() const {
+	return _headers;
 }
 
 const http::entity &request::entity() const {

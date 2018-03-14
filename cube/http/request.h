@@ -13,20 +13,22 @@ public:
 	virtual ~request() {}
 
 	bool has_entity_done() const;
-	int put_start_line(const char *data, int sz);
-	int put_header_line(const char *data, int sz);
-	int put_entity_data(const char *data, int sz);
+	int set_start_line(const std::string &data);
+	int add_header_line(const std::string &data);
+	int end_header_data();
+	int add_entity_data(const char *data, int sz);
+	int end_entity_data();
 
 public:
 	const http::query &query() const;
-	const http::header &header() const;
+	const http::headers &headers() const;
 	const http::entity &entity() const;
 
 private:
 	//http request query
 	http::query _query;
-	//http request header
-	http::header _header;
+	//http request headers
+	http::headers _headers;
 	//http request entity
 	http::entity _entity;
 };

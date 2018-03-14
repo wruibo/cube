@@ -4,7 +4,7 @@
 BEGIN_CUBE_HTTP_NS
 class query {
 public:
-	query() {}
+	query() : _method(""), _path(""), _version("") {}
 	virtual ~query() {}
 
 	std::string pack() const;
@@ -15,6 +15,7 @@ public:
 	const std::string &path() const { return _path; }
 	const http::params &params() const { return _params; }
 	const std::string &version() const { return _version; }
+
 private:
 	//request method
 	std::string _method;

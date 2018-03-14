@@ -162,6 +162,15 @@
     <ClCompile Include="http\param.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="http\config.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\applet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\servlet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">
@@ -339,6 +348,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="sys\error.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\config.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\applet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\servlet.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

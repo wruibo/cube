@@ -16,11 +16,17 @@ public:
 	/*
 	*	notify parser with head line string
 	*@param data: in, line string without "\r\n"
-	*@param sz: in, line string size
 	*@return:
 	*	0 for success, <0 for error
 	*/
-	virtual int on_head_line(const char *data, int sz) = 0;
+	virtual int add_head_line(const std::string &data) = 0;
+
+	/*
+	*	notify parser with end input of head data
+	*@return:
+	*	0 for success, <0 for error
+	*/
+	virtual int end_head_data() = 0;
 
 	/*
 	*	notify parser with body data
@@ -29,7 +35,14 @@ public:
 	*@return:
 	*	data size feed, <0 for error
 	*/
-	virtual int on_body_data(const char *data, int sz) = 0;
+	virtual int add_body_data(const char *data, int sz) = 0;
+
+	/*
+	*	notify parser with end input of body data
+	*@return:
+	*	0 for success, <0 for error
+	*/
+	virtual int end_body_data() = 0;
 };
 
 //stream parser interface
@@ -59,8 +72,10 @@ public:
 	virtual ~request_message_parser() {}
 
 	bool has_body_done() const;
-	int on_head_line(const char *data, int sz);
-	int on_body_data(const char *data, int sz);
+	int add_head_line(const std::string &data);
+	int end_head_data();
+	int add_body_data(const char *data, int sz);
+	int end_body_data();
 
 public:
 	http::request &request() { return _request; }

@@ -2,37 +2,11 @@
 #include "cube\svc\http_server.h"
 
 BEGIN_CUBE_SVC_NS
-////////////////////////http applet class/////////////////////////////
-void http_applet::mount(const std::string &method, const std::string &path, http_servlet *servlet) {
-	std::map<std::string, std::map<std::string, std::shared_ptr<http_servlet>>>::iterator iter = _servlets.find(method);
-	if (iter == _servlets.end()) {
-		_servlets.insert(std::pair<std::string, std::map<std::string, std::shared_ptr<http_servlet>>>(method, std::map<std::string, std::shared_ptr<http_servlet>>()));
-	}
-
-	_servlets[method].insert(std::pair<std::string, std::shared_ptr<http_servlet>>(path, std::shared_ptr<http_servlet>(servlet)));
-}
-
-void http_applet::handle(const cube::http::request &req, cube::http::response &resp) {
-	std::string method = req.query().method();
-	std::map<std::string, std::map<std::string, std::shared_ptr<http_servlet>>>::iterator miter = _servlets.find(method);
-	if (miter == _servlets.end()) {
-		//method not allowed
-		resp.cerr(405);
-	}
-
-	std::map<std::string, std::shared_ptr<http_servlet>>::iterator siter = _servlets[method].find(req.query().path());
-	if (siter != _servlets[method].end()) {
-		siter->second->handle(req, resp);
-	} else {
-		//request resource not found
-		resp.cerr(404);
-	}
-}
 //////////////////////////////////////http session class///////////////////////////////////////
 int http_session::on_open(void *arg) {
 	cube::log::info("[http][%s] open session", name().c_str());
 	//save servlets
-	_applet = (http_applet*)arg;
+	_applet = (http::applet*)arg;
 
 	//receive data from client
 	std::string errmsg("");
@@ -95,7 +69,7 @@ void http_session::on_close() {
 }
 
 //////////////////////////////////////http server class///////////////////////////////////////
-int http_server::start(ushort port, int workers, http_applet *applet) {
+int http_server::start(ushort port, int workers, http::applet *applet) {
 	return _server.start(port, workers, applet);
 }
 
