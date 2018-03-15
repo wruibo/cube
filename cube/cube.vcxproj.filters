@@ -171,6 +171,12 @@
     <ClCompile Include="http\servlet.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="http\mime.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="http\charset.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cc\crontab.h">
@@ -357,6 +363,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="http\servlet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\mime.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="http\charset.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

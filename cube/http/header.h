@@ -8,7 +8,10 @@ public:
 	element() {}
 	element(const std::string &name, const std::string &value) : pair(name, value) {}
 	virtual ~element() {}
-			
+
+	std::string pack() const;
+	int parse(const std::string &str);
+
 public:
 	http::params &params() { return _params; }
 
@@ -24,6 +27,9 @@ public:
 	header(const std::string &name, const std::string &value) : pair(name, value) {}
 	virtual ~header() {}
 
+	std::string pack() const;
+	int parse(const std::string &str);
+
 public:
 	bool operator==(const header &header) const;
 	bool operator==(const std::string &name) const;
@@ -35,11 +41,14 @@ public:
 	headers() {}
 	virtual ~headers() {}
 
+	std::string pack() const;
+	int parse(const std::string &str);
+
+public:
 	std::string get(const std::string &name) const;
 	std::string get(const std::string &name, const char *default) const;
 	std::vector<std::string> gets(const std::string &name) const;
 
-	int add(const std::string &data);
 	void add(const std::string &name, const std::string &value);
 	void set(const std::string &name, const std::string &value);
 private:

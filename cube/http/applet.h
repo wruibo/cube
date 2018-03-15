@@ -13,9 +13,9 @@ public:
 	*@param req: in, request object
 	*@param resp: in/out, response object
 	*@return:
-	*	void
+	*	0 for success, otherwise for error
 	*/
-	void handle(const cube::http::request &req, cube::http::response &resp);
+	int handle(const cube::http::request &req, cube::http::response &resp);
 
 	/*
 	*	mount path with relate servlet

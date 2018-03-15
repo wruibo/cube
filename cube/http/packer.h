@@ -34,6 +34,9 @@ public:
 	*/
 	int take(char *data, int sz);
 
+public:
+	http::response &response() { return _response; }
+
 private:
 	//response object
 	http::response _response;

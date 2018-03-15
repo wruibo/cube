@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="http\applet.cpp" />
+    <ClCompile Include="http\charset.cpp" />
     <ClCompile Include="http\config.cpp" />
     <ClCompile Include="http\handler.cpp" />
     <ClCompile Include="http\buffer.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="cc\thread.cpp" />
     <ClCompile Include="cc\timer.cpp" />
     <ClCompile Include="cfg\ini.cpp" />
+    <ClCompile Include="http\mime.cpp" />
     <ClCompile Include="http\packer.cpp" />
     <ClCompile Include="http\message.cpp" />
     <ClCompile Include="http\param.cpp" />
@@ -76,7 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="http\applet.h" />
+    <ClInclude Include="http\charset.h" />
     <ClInclude Include="http\config.h" />
+    <ClInclude Include="http\mime.h" />
     <ClInclude Include="http\servlet.h" />
     <ClInclude Include="sys\cpu.h" />
     <ClInclude Include="http\handler.h" />

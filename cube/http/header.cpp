@@ -6,8 +6,37 @@
 #include "cube\http\header.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////element class///////////////////////////////////////
+std::string element::pack() const {
+	return "";
+}
+
+int element::parse(const std::string &str) {
+	return -1;
+}
 
 //////////////////////////////////////////field class///////////////////////////////////////
+std::string header::pack() const {
+	std::string res("");
+	res.append(name());
+	res.append(": ");
+	res.append(value());
+	res.append("\r\n");
+	return res;
+}
+
+int header::parse(const std::string &str) {
+	std::size_t sep = str.find(": ");
+	if (sep == std::string::npos) {
+		log::error("header: %s invalid header", str.c_str());
+		return -1;
+	}
+
+	name(str.substr(0, sep));
+	value(str.substr(sep + 1));
+
+	return 0;
+}
+
 bool header::operator==(const header &header) const {
 	return str::lower(name()) == str::lower(header.name());
 }
@@ -17,6 +46,31 @@ bool header::operator==(const std::string &name) const {
 }
 
 //////////////////////////////////////////header class/////////////////////////////////////////
+std::string headers::pack() const {
+	std::string res("");
+	for (::size_t i = 0; i < _headers.size(); i++) {
+		res.append(_headers[i].pack());
+	}
+	return res;
+}
+
+int headers::parse(const std::string &str) {
+	::size_t spos = 0, epos = str.find("\r\n");
+	while (epos != std::string::npos) {
+		//current header line
+		std::string line = str.substr(spos, epos);
+		
+		//parse header
+		header header;
+		if(header.parse(line) != 0)
+			return -1;
+
+		//add header
+		_headers.push_back(header);
+	}
+	return 0;
+}
+
 std::string headers::get(const std::string &name) const {
 	for (::size_t i = 0; i < _headers.size(); i++) {
 		if (_headers[i] == name) {
@@ -47,20 +101,6 @@ std::vector<std::string> headers::gets(const std::string &name) const {
 	return res;
 }
 
-int headers::add(const std::string &data) {
-	//split header data
-	std::vector<std::string> item;
-	str::part(data.c_str(), ":", item, 2);
-	if (item.size() != 2) {
-		log::error("header: %s invalid header", data.c_str());
-		return -1;
-	}
-
-	//add header
-	add(item[0], item[1]);
-	return 0;
-}
-
 void headers::add(const std::string &name, const std::string &value) {
 	_headers.push_back(header(name, value));
 }
@@ -73,5 +113,4 @@ void headers::set(const std::string &name, const std::string &value) {
 		_headers.push_back(header(name, value));
 	}
 }
-
 END_CUBE_HTTP_NS

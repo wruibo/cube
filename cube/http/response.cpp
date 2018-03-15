@@ -1,108 +1,61 @@
+#include "cube\http\config.h"
 #include "cube\http\response.h"
 BEGIN_CUBE_HTTP_NS
 ////////////////////////////////////////response class///////////////////////////////////////////
-void response::info(int code) {
+std::string response::pack() const {
+	std::string res("");
 
+	//pack status line
+	res.append(_status.pack());
+	//pack headers
+	res.append(_headers.pack());
+
+	//pack empty line
+	res.append("\r\n");
+
+	//pack entity data
+	res.append(_entity.get_data());
+
+	return res;
 }
 
-void response::succ(int code) {
-
-}
-
-void response::cerr(int code) {
+void response::status(http::status s) {
 	//set status line
-	_head.status().set(code);
+	_status = s;
 
-	//set general header
-	_head.header().set(http::header::response::default());
+	//set default headers
+	_headers.add("Server", http::config::server);
 }
 
-void response::serr(int code) {
-	//set status line
-	_head.status().set(code);
-
-	//set general header
-	_head.header().set(http::header::response::default());
-}
-
-void response::jump(const char *url, bool permanent) {
+void response::redirect(const char *url, bool permanent) {
 	//set status line
 	if (permanent)
-		_head.status().set(301);
+		_status = http::status_301_moved_permanently;
 	else
-		_head.status().set(302);
+		_status = http::status_302_found;
 
 	//set general header
-	_head.set_header(http::header::response::default());
+	_headers.add("Server", http::config::server);
 
 	//set redirect location
-	_head.set_header("Location", url);
+	_headers.add("Location", url);
 }
 
-void response::file(const char *path, const char* charset) {
+void response::content(const char *data, int sz, const char *type, const char *charset) {
 	//set status line
-	_head.status().set(200);
+	_status = http::status_200_ok;
 
 	//set general header
-	_head.header.(http::header::response::default());
+	_headers.add("Server", http::config::server);
 
 	//set entity data
-	_body.file(path, charset);
+	_entity.set_data(data, sz);
+
+	//set entity type/charset
+	_entity.set_type(type, charset);
 }
 
-void response::json(const char *data, int sz, const char* charset) {
-	//set status line
-	_head.status().set(200);
-
-	//set general header
-	_head.set_header(http::header::response::default());
-
-	//set entity data
-	_body.data("json", data, sz, charset);
-}
-
-void response::data(const char *data, int sz, const char* charset) {
-	//set status line
-	_head.status().set(200);
-
-	//set general header
-	_head.set_header(http::header::response::default());
-
-	//set entity data
-	_body.data("octet", data, sz, charset);
-}
-
-int response::read(char *data, int sz) {
-	//taked size
-	int tsz = 0;
-
-	//take head data
-	if (tsz < sz) {
-		tsz += _head.take(data + tsz, sz - tsz);
-	}
-
-	//take body data
-	if (tsz < sz) {
-		tsz += _body.take(data + tsz, sz - tsz);
-	}
-
-	//size taked
-	return tsz;
-}
-
-int response::write(const char *data, int sz) {
-	//feed size
-	int fsz = 0;
-
-	//feed head
-	if (!_head.done()) {
-		fsz += _head.feed(data + fsz, sz - fsz);
-	}
-
-	//feed body
-	fsz += _body.feed(data + fsz, sz - fsz);
-
-	//size feed
-	return fsz;
+void response::cookie(const std::string &name, const std::string &value, int maxage, const char *domain = config::domain, const char *path = "/") {
+	_cookies.set(name, value, domain, path, maxage);
 }
 END_CUBE_HTTP_NS

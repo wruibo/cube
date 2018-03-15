@@ -44,5 +44,4 @@ int status::parse(const std::string &str) {
 
 	return 0;
 }
-
 END_CUBE_HTTP_NS

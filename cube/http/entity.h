@@ -12,6 +12,26 @@ public:
 	virtual ~entity() { }
 
 	/*
+	*	set content type & charset
+	*/
+	void set_type(const char *type, const char *charset = 0);
+
+	/*
+	*	get entity data
+	*/
+	std::string get_data() const;
+
+	/*
+	*	set entity data
+	*/
+	void set_data(const char *data, int sz);
+
+	/*
+	*	get meta information from entity
+	*/
+	void get_meta(headers &headers);
+
+	/*
 	*	set entity meta information by http message headers
 	*@param headers: in, http message headers
 	*@return:

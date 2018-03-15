@@ -13,9 +13,9 @@ public:
 	*@param req: in, client request
 	*@param resp: in/out, service response
 	*@return:
-	*	void
+	*	0 for success, otherwise for error
 	*/
-	virtual void handle(const cube::http::request &req, cube::http::response &resp) = 0;
+	virtual int handle(const cube::http::request &req, cube::http::response &resp) = 0;
 };
 END_CUBE_HTTP_NS
 

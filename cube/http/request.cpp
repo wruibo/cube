@@ -14,7 +14,7 @@ int request::set_start_line(const std::string &data) {
 }
 
 int request::add_header_line(const std::string &data) {
-	return _headers.add(data);
+	return _headers.parse(data);
 }
 
 int request::end_header_data() {

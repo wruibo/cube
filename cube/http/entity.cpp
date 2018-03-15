@@ -1,9 +1,46 @@
 #include "cube\log\log.h"
+#include "cube\str\cast.h"
 #include "cube\str\stype.h"
 #include "cube\http\config.h"
 #include "cube\http\entity.h"
 BEGIN_CUBE_HTTP_NS
 //////////////////////////////////////////entity class/////////////////////////////////////////
+void entity::get_meta(headers &headers) {
+	//get content type
+	if (!_type.empty()) {
+		headers.set("Content-Type", _type);
+	}
+
+	//get content length
+	if (_length > 0) {
+		headers.set("Content-Length", str::string(_length));
+	}
+
+}
+
+void entity::set_type(const char *type, const char *charset) {
+	//set type of content
+	_type.append(type);
+
+	//set charset of content
+	if (charset != 0) {
+		_type.append(";charset=");
+		_type.append(charset);
+	}
+}
+
+std::string entity::get_data() const {
+	return _stream.data();
+}
+
+void entity::set_data(const char *data, int sz) {
+	//set content length
+	_length = sz;
+
+	//set entity stream data
+	_stream.write(data, sz);
+}
+
 int entity::set_meta(const headers &headers) {
 	//set content type
 	_type = headers.get("content-type");

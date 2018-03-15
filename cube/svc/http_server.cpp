@@ -23,7 +23,7 @@ int http_session::on_send(int transfered) {
 	cube::log::info("[http][%s] send data: %d bytes", name().c_str(), transfered);
 	//send response content
 	char buf[BUFSZ] = { 0 };
-	int sz = _resp.take(buf, BUFSZ);
+	int sz = _response_packer.take(buf, BUFSZ);
 	if (sz > 0) {
 		//send left response data
 		return send(buf, sz);
@@ -37,16 +37,18 @@ int http_session::on_recv(char *data, int transfered) {
 	cube::log::info("[http][%s] recv data: %d bytes", name().c_str(), transfered);
 	try {
 		//feed data to request
-		_req.feed(data, transfered);
+		_request_parser.feed(data, transfered);
 
 		//request data has completed
-		if (_req.done()) {
+		if (_request_parser.done()) {
 			//process request
-			_applet->handle(_req.request(), _resp.response());
+			if (_applet->handle(_request_parser.request(), _response_packer.response()) != 0) {
+				return -1;
+			}
 
 			//send response content
 			char buf[BUFSZ] = { 0 };
-			int sz = _resp.take(buf, BUFSZ);
+			int sz = _response_packer.take(buf, BUFSZ);
 			if (sz > 0) {
 				//send response data
 				return send(buf, sz);
