@@ -17,7 +17,7 @@ int request::add_header_line(const std::string &data) {
 	return _headers.parse(data);
 }
 
-int request::end_header_data() {
+int request::end_header_line() {
 	return _entity.set_meta(_headers);
 }
 

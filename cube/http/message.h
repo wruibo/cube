@@ -31,7 +31,7 @@ public:
 	*@return:
 	*	0 for success, otherwise <0
 	*/
-	virtual int end_header_data() = 0;
+	virtual int end_header_line() = 0;
 
 	/*
 	*	add message entity data

@@ -15,7 +15,7 @@ public:
 	bool has_entity_done() const;
 	int set_start_line(const std::string &data);
 	int add_header_line(const std::string &data);
-	int end_header_data();
+	int end_header_line();
 	int add_entity_data(const char *data, int sz);
 	int end_entity_data();
 
