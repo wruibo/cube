@@ -25,9 +25,9 @@ int mkdirs(const std::string &path) {
 	}
 
 	//get parent directory
-	size_t pos1 = path.find_last_of('/'), pos2 = path.find_last_of('\\'), lastpos = std::string::npos;
+	std::size_t pos1 = path.find_last_of('/'), pos2 = path.find_last_of('\\'), lastpos = std::string::npos;
 	if (pos1 != std::string::npos && pos2 != std::string::npos) {
-		size_t lpos = pos1 < pos2 ? pos1 : pos2, rpos = pos1 < pos2 ? pos2 : pos1, pos = lpos + 1;
+		std::size_t lpos = pos1 < pos2 ? pos1 : pos2, rpos = pos1 < pos2 ? pos2 : pos1, pos = lpos + 1;
 		while (pos < rpos) {
 			if (path[pos] != '\\' && path[pos] != '/')
 				break;

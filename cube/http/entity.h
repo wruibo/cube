@@ -11,6 +11,9 @@ public:
 	entity() : _length(0), _type(""), _language(""), _encoding(""), _range(""), _expires("") {}
 	virtual ~entity() { }
 
+	std::string pack() const;
+	int parse(const std::string &str);
+
 	/*
 	*	set content type & charset
 	*/

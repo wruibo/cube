@@ -1,43 +1,45 @@
 #include "cube\safe.h"
+#include "cube\log\log.h"
 #include "cube\str\part.h"
 #include "cube\str\case.h"
 #include "cube\str\format.h"
 #include "cube\http\request.h"
 BEGIN_CUBE_HTTP_NS
 
-bool request::has_entity_done() const {
-	return _entity.has_done();
+std::string request::pack() const {
+	std::string res("");
+
+	//pack query
+	res.append(_query.pack());
+
+	//pack headers
+	res.append(_headers.pack());
+
+	//pack empty line
+	res.append("\r\n");
+
+	return res;
 }
 
-int request::set_start_line(const std::string &data) {
-	return _query.parse(data);
-}
+int request::parse(const std::string &str) {
+	//find request line seperator
+	std::size_t pos = str.find("\r\n");
+	if (pos == std::string::npos) {
+		log::error("parse request failed.");
+		return -1;
+	}
 
-int request::add_header_line(const std::string &data) {
-	return _headers.parse(data);
-}
+	std::string squery = str.substr(0, pos);
+	std::string sheaders = str.substr(pos + 2);
 
-int request::end_header_line() {
-	return _entity.set_meta(_headers);
-}
+	//parse query
+	if (_query.parse(squery) != 0)
+		return -1;
 
-int request::add_entity_data(const char *data, int sz) {
-	return _entity.add_data(data, sz);
-}
+	//parse headers
+	if (_headers.parse(sheaders) != 0)
+		return -1;
 
-int request::end_entity_data() {
-	return _entity.end_data();
-}
-
-const http::query &request::query() const {
-	return _query;
-}
-
-const http::headers &request::headers() const {
-	return _headers;
-}
-
-const http::entity &request::entity() const {
-	return _entity;
+	return 0;
 }
 END_CUBE_HTTP_NS

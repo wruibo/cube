@@ -45,7 +45,7 @@
     <ClCompile Include="http\query.cpp" />
     <ClCompile Include="http\request.cpp" />
     <ClCompile Include="http\response.cpp" />
-    <ClCompile Include="http\session.cpp" />
+    <ClCompile Include="http\csession.cpp" />
     <ClCompile Include="http\status.cpp" />
     <ClCompile Include="http\stream.cpp" />
     <ClCompile Include="log\log.cpp" />
@@ -56,9 +56,7 @@
     <ClCompile Include="net\init.cpp" />
     <ClCompile Include="net\iocp.cpp" />
     <ClCompile Include="net\service.cpp" />
-    <ClCompile Include="net\session.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)netsession</ObjectFileName>
-    </ClCompile>
+    <ClCompile Include="net\session.cpp" />
     <ClCompile Include="net\socket.cpp" />
     <ClCompile Include="str\case.cpp" />
     <ClCompile Include="str\cast.cpp" />
@@ -107,7 +105,7 @@
     <ClInclude Include="http\query.h" />
     <ClInclude Include="http\request.h" />
     <ClInclude Include="http\response.h" />
-    <ClInclude Include="http\session.h" />
+    <ClInclude Include="http\csession.h" />
     <ClInclude Include="http\status.h" />
     <ClInclude Include="http\stream.h" />
     <ClInclude Include="log\log.h" />

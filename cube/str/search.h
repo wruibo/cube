@@ -15,7 +15,7 @@ BEGIN_CUBE_STR_NS
 *@return:
 *	max length of the same prefix and postfix
 */
-static int max_same_prefix_and_postfix(const char* blk, int len);
+int max_same_prefix_and_postfix(const char* blk, int len);
 
 /*
 *	search wrapper, search a target data block in the content data block, return the position of the first ocurrence in the content
@@ -26,8 +26,8 @@ static int max_same_prefix_and_postfix(const char* blk, int len);
 *@return
 *	pointer to the first occurence of @target in the @content block, or 0 if target not found.
 */
-static char* search(char* content, int content_length, const char* target, int target_length, bool fast = true);
-static const char* search(const char* content, int content_length, const char* target, int target_length, bool fast = true);
+char* search(char* content, int content_length, const char* target, int target_length, bool fast = true);
+const char* search(const char* content, int content_length, const char* target, int target_length, bool fast = true);
 
 /*
 *	fast search, search a target data block in the content data block, return the position of the first ocurrence in the content
@@ -38,8 +38,8 @@ static const char* search(const char* content, int content_length, const char* t
 *@return
 *	pointer to the first occurence of @target in the @content block, or 0 if target not found.
 */
-static char* search_fast(char* content, int content_length, const char* target, int target_length);
-static const char* search_fast(const char* content, int content_length, const char* target, int target_length);
+char* search_fast(char* content, int content_length, const char* target, int target_length);
+const char* search_fast(const char* content, int content_length, const char* target, int target_length);
 
 /*
 *	slow search, search a target data block in the content data block, return the position of the first ocurrence in the content
@@ -50,8 +50,8 @@ static const char* search_fast(const char* content, int content_length, const ch
 *@return
 *	pointer to the first occurence of @target in the @content block, or 0 if target not found.
 */
-static char* search_slow(char* content, int content_length, const char* target, int target_length);
-static const char* search_slow(const char* content, int content_length, const char* target, int target_length);
+char* search_slow(char* content, int content_length, const char* target, int target_length);
+const char* search_slow(const char* content, int content_length, const char* target, int target_length);
 
 /*
 *	overwrite source with destination in the given data, use default value if destinaiton length is less than source length
@@ -65,5 +65,5 @@ static const char* search_slow(const char* content, int content_length, const ch
 *@return:
 *	place number overwrited, otherwise <0
 */
-static int search_replace(char* data, int datalen, const char* src, int srclen, const char* dest, int destlen, char default = 0, bool onlyfirst = true);
+int search_replace(char* data, int datalen, const char* src, int srclen, const char* dest, int destlen, char default = 0, bool onlyfirst = true);
 END_CUBE_STR_NS

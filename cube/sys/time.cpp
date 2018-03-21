@@ -59,4 +59,12 @@ std::string now(const char* format, timezone tz) {
 	strftime(buf, bufsz - 1, format, tt);
 	return std::string(buf);
 }
+
+std::string gmt(::time_t t) {
+	struct tm *tm = ::gmtime(&t);
+	const int bufsz = 128;
+	char buf[bufsz] = { 0 };
+	strftime(buf, bufsz - 1, "%a, %d %b %Y %T GMT", tm);
+	return std::string(buf);
+}
 END_CUBE_SYS_TIME_NS

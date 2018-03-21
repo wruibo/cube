@@ -2,30 +2,34 @@
 BEGIN_CUBE_HTTP_NS
 ///////////////////////////////request message parser class////////////////////////////////////////
 bool request_message_parser::has_body_done() const {
-	return _request.has_entity_done();
+	return false;
 }
 
 int request_message_parser::add_head_line(const std::string &data) {
 	//process start line
 	if (_start_line) {
 		_start_line = false;
-		return _request.set_start_line(data);
+		//return _request.set_start_line(data);
 	}
 
 	//process header line
-	return _request.add_header_line(data);
+	//return _request.add_header_line(data);
+	return -1;
 }
 
 int request_message_parser::end_head_data() {
-	return _request.end_header_data();
+	return -1;
+	//return _request.end_header_data();
 }
 
 int request_message_parser::add_body_data(const char *data, int sz) {
-	return _request.add_entity_data(data, sz);
+	return -1;
+	//return _request.add_entity_data(data, sz);
 }
 
 int request_message_parser::end_body_data() {
-	return _request.end_entity_data();
+	return -1;
+	//return _request.end_entity_data();
 }
 ///////////////////////////////request stream parser class////////////////////////////////////////
 int request_stream_parser::feed(const char *data, int sz) {

@@ -12,23 +12,25 @@ public:
 	response() { }
 	virtual ~response() {}
 	
-	/*
-	*	pack response content
-	*/
 	std::string pack() const;
+	int parse(const std::string &str);
 
 public:
 	/*
 	*	set response status
 	*/
-	void status(http::status s);
+	void set_status(http::status s);
 
 	/*
-	*	redirect to new location, code: 3xx
-	*@param code: in, redirect code
-	*@param url: in, new location
+	*	set response header
 	*/
-	void redirect(const char *url, bool permanent = true);
+	void set_header(const std::string &name, const std::string &value);
+	void add_header(const std::string &name, const std::string &value);
+
+	/*
+	*	set response cookie
+	*/
+	void set_cookie(const std::string &name, const std::string &value, int maxage);
 
 	/*
 	*	set response content
@@ -38,22 +40,22 @@ public:
 	*@return:
 	*	void
 	*/
-	void content(const char *data, int sz, const char *type, const char *charset = config::default_charset);
+	void set_content(const char *data, int sz, const std::string &type, const std::string &charset = "");
 
+public:
 	/*
-	*	set response cookie
+	*	redirect to new location, code: 3xx
+	*@param code: in, redirect code
+	*@param url: in, new location
 	*/
-	void cookie(const std::string &name, const std::string &value, int maxage, const char *domain = config::domain, const char *path="/");
+	void redirect(const char *url, bool permanent = true);
 
 private:
 	//response status
 	http::status _status;
 	//response header
 	http::headers _headers;
-	//response entity
-	http::entity _entity;
-
-	//response cookie
-	http::cookies _cookies;
+	//response content
+	std::string _content;
 };
 END_CUBE_HTTP_NS

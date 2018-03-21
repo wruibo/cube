@@ -1,5 +1,7 @@
 #pragma once
 #include "cube\type.h"
+#include "cube\cc\looper.h"
+#include "cube\net\socket.h"
 #include "cube\net\service.h"
 BEGIN_CUBE_SVC_NS
 ////////////////////////////////////////////////////tcp server//////////////////////////////////////////////
@@ -51,7 +53,7 @@ public:
 
 
 		//step2: start listen on the port
-		_socket = socket::listen(ip, port, socket::mode::OVERLAPPED | socket::mode::REUSEADDR);
+		_socket = net::socket::listen(ip, port, net::socket::mode::OVERLAPPED | net::socket::mode::REUSEADDR);
 
 		//step3: start accept looper thread
 		_looper.start(this);
@@ -84,7 +86,7 @@ public:
 	void run() {
 		try {
 			//wait for new connection
-			socket sock = _socket.accept(50, 0);
+			net::socket sock = _socket.accept(50, 0);
 
 			//create new session for connection
 			net::session *s = new sessionimpl();
@@ -92,15 +94,15 @@ public:
 			//dispatch new session to iocp service
 			_service.dispatch(sock, s);
 
-		} catch (const socket::ewouldblock&) {}
+		} catch (const net::socket::ewouldblock&) {}
 	}
 
 private:
 	//listen socket
-	socket _socket;
+	net::socket _socket;
 
 	//thread looper
-	looper _looper;
+	cc::looper _looper;
 
 	//service for server
 	net::service _service;

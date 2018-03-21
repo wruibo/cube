@@ -84,7 +84,7 @@ int size(const std::string &path, size_t &sz) {
 }
 
 std::string ext(const std::string &name) {
-	size_t pos = name.rfind('.');
+	std::size_t pos = name.rfind('.');
 	if (pos != std::string::npos) {
 		return name.substr(pos);
 	}
@@ -127,7 +127,7 @@ int read(const std::string &path, std::string &data) {
 	ifs.read(buf, BUFSZ);
 	while (ifs.gcount() > 0) {
 		//append data
-		data.append(buf, (size_t)ifs.gcount());
+		data.append(buf, (std::size_t)ifs.gcount());
 
 		//check file
 		if (!ifs.good())

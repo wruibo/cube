@@ -14,7 +14,7 @@ int applet::handle(const cube::http::request &req, cube::http::response &resp) {
 	std::map<std::string, std::map<std::string, std::shared_ptr<servlet>>>::iterator miter = _servlets.find(method);
 	if (miter == _servlets.end()) {
 		//method not allowed
-		resp.status(http::status_405_method_not_allowed);
+		resp.set_status(http::status_405_method_not_allowed);
 	}
 
 	std::map<std::string, std::shared_ptr<servlet>>::iterator siter = _servlets[method].find(req.query().path());
@@ -22,7 +22,7 @@ int applet::handle(const cube::http::request &req, cube::http::response &resp) {
 		return siter->second->handle(req, resp);
 	} else {
 		//request resource not found
-		resp.status(http::status_404_not_found);
+		resp.set_status(http::status_404_not_found);
 	}
 
 	return 0;

@@ -30,7 +30,8 @@ void entity::set_type(const char *type, const char *charset) {
 }
 
 std::string entity::get_data() const {
-	return _stream.data();
+	return "";
+	//return _stream.data();
 }
 
 void entity::set_data(const char *data, int sz) {

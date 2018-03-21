@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "cube\ns.h"
 BEGIN_CUBE_HTTP_NS
 class message {

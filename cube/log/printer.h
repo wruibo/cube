@@ -57,9 +57,9 @@ private:
 	//file number for sized cutting file
 	int _currnum;
 	//current file size for sized cutting file
-	uint _currfsz;
+	size_t _currfsz;
 	//file size limit for sized cutting file
-	uint _fszlimit;
+	size_t _fszlimit;
 
 };
 END_CUBE_LOG_NS

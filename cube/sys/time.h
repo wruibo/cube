@@ -13,7 +13,7 @@ enum class timeunit { year = 0, month = 1, day = 2, hour = 3, min = 4, sec = 5, 
 *@return:
 *	current time unit value
 */
-static int now(timeunit u, timezone tz = timezone::local);
+int now(timeunit u, timezone tz = timezone::local);
 
 /*
 *	get current time
@@ -21,7 +21,7 @@ static int now(timeunit u, timezone tz = timezone::local);
 *@return:
 *	current time
 */
-static struct tm *now(timezone tz = timezone::local);
+struct tm *now(timezone tz = timezone::local);
 
 /*
 *	get current time string by specified format
@@ -29,5 +29,10 @@ static struct tm *now(timezone tz = timezone::local);
 *@return:
 *	time string
 */
-static std::string now(const char* format, timezone tz = timezone::local);
+std::string now(const char* format, timezone tz = timezone::local);
+
+/*
+*	get GMT time string, 
+*/
+std::string gmt(::time_t t);
 END_CUBE_SYS_TIME_NS

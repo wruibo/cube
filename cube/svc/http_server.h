@@ -1,14 +1,12 @@
 #pragma once
 #include "cube\type.h"
-#include "cube\http\parser.h"
-#include "cube\http\packer.h"
 #include "cube\http\applet.h"
 #include "cube\svc\tcp_server.h"
 BEGIN_CUBE_SVC_NS
 //http session class
 class http_session : public net::session {
 	//session send & recv buffer size
-	static const int BUFSZ = 4096;
+	static const int BUFSZ = 16*1024;
 public:
 	http_session() : _applet(0) {}
 	virtual ~http_session() {}
@@ -22,10 +20,14 @@ private:
 	//relate applet
 	http::applet *_applet;
 
-	//session request stream
-	cube::http::request_stream_parser _request_parser;
-	//session response stream
-	cube::http::response_stream_packer _response_packer;
+	//session request
+	http::request _request;
+	//session response
+	http::response _response;
+
+	//response data & transfered
+	std::string _respdata;
+	int _transfered;
 };
 
 //http server class

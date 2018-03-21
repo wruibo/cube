@@ -21,12 +21,15 @@ int http_session::on_open(void *arg) {
 
 int http_session::on_send(int transfered) {
 	cube::log::info("[http][%s] send data: %d bytes", name().c_str(), transfered);
-	//send response content
-	char buf[BUFSZ] = { 0 };
-	int sz = _response_packer.take(buf, BUFSZ);
-	if (sz > 0) {
-		//send left response data
-		return send(buf, sz);
+	//add transfered data
+	_transfered += transfered;
+
+	if (_transfered < (int)_respdata.length()) {
+		//send left data
+		int leftsz = _respdata.length() - _transfered;
+		int sendsz = leftsz > BUFSZ ? BUFSZ : leftsz;
+
+		return send(_respdata.c_str() + _transfered, sendsz);
 	}
 
 	//all response data has sent, close session
@@ -36,30 +39,24 @@ int http_session::on_send(int transfered) {
 int http_session::on_recv(char *data, int transfered) {
 	cube::log::info("[http][%s] recv data: %d bytes", name().c_str(), transfered);
 	try {
-		//feed data to request
-		_request_parser.feed(data, transfered);
+		//parse request
+		if(_request.parse(std::string(data, transfered)) != 0)
+			return -1;
 
-		//request data has completed
-		if (_request_parser.done()) {
-			//process request
-			if (_applet->handle(_request_parser.request(), _response_packer.response()) != 0) {
-				return -1;
-			}
-
-			//send response content
-			char buf[BUFSZ] = { 0 };
-			int sz = _response_packer.take(buf, BUFSZ);
-			if (sz > 0) {
-				//send response data
-				return send(buf, sz);
-			}
-
-			//no data
+		//handle request
+		if (_applet->handle(_request, _response) != 0) {
 			return -1;
 		}
 
-		//wait for more data
-		return 0;
+		//pack response
+		_transfered = 0;
+		_respdata = _response.pack();
+		if (_respdata.empty())
+			return -1;
+
+		//send response data
+		int sendsz = _respdata.length() > BUFSZ ? BUFSZ : _respdata.length();
+		return send(_respdata.c_str(), sendsz);
 	} catch (std::exception &e) {
 		cube::log::error("[http][%s] recv data: %s", name().c_str(), e.what());
 		return -1;
